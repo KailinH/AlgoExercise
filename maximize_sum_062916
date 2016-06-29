@@ -1,0 +1,15 @@
+'''
+maximize sum problem
+problem source:https://www.hackerrank.com/challenges/maximize-sum
+Description: "You are given an array of size N and another integer M. 
+Your target is to find the maximum value of sum of subarray modulo M.
+  Subarray is a continuous subset of array elements."
+'''
+def maximize_sum(arr,N,M):
+    pool = []                                   ##pool of the sum of all subarrays
+    size = np.arange(1,N+1)                     ##size of all possible subarrays, namely from 1 to N, here we disregard the empty subarray
+    for i in size:                              ##loops to collect sums of all possible subarrays
+        for j in np.arange(N-i+1):
+            pool.append(sum(arr[j:(j+i)]))
+    result = [x%M for x in pool]                ###calculate all the modulo M
+    return max(result)
