@@ -1,0 +1,15 @@
+
+''''
+ice cream parlor problem
+problem source:https://www.hackerrank.com/challenges/icecream-parlor
+''''
+def ice_cream_parlor(M,c):
+    N = len(c)
+    for i in range(N):
+        temp = c.copy()
+        del temp[i]
+        remain = M-c[i]
+        if remain in temp:
+            j = temp.index(remain)
+            if j<i:
+                return j+1,i+1
