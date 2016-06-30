@@ -1,0 +1,13 @@
+'''
+Given  a list integers, count the number of pairs of integers whose difference is k
+problem source:https://www.hackerrank.com/challenges/pairs
+'''
+
+def pairs(a,k):
+    count = 0
+    for i in range(len(a)):
+        for j in range(1,(len(a)-i)):  
+            if abs(a[i]-a[i+j])==k:
+                count+=1
+
+    return count
