@@ -1,0 +1,15 @@
+'''
+the max min challenge
+source:https://www.hackerrank.com/challenges/angry-children
+'''
+def max_min(l,k):      ##l is a list of N integers,k is the size of sub-array
+    min_unfairness=0
+    delta = []         ##differences in list entries, len(delta)=len(l)-1
+    l.sort()           ##sort the list so we won't have negative delta
+    for i in range(len(l)-1):
+        delta.append(l[i+1]-l[i])
+    delta.sort()
+    print (delta)
+    for i in range(k-1):
+        min_unfairness += delta[i]   ##mathematically equivalent to minimum unfairness of subarray of size k
+    return min_unfairness
