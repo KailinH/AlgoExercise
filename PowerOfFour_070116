@@ -1,0 +1,25 @@
+'''
+Given an integer (signed 32 bits), write a function to check whether it is a power of 4.
+source:https://leetcode.com/problems/power-of-four/
+'''
+class Solution(object):
+    def isPowerOfFour(self, num):
+        while num>1.0:            
+              num = float(num/4)
+        if num == 1.0:
+           return True
+        else:
+            return False
+print(Solution().isPowerOfFour(1048576))  ##return True
+
+#######another solution without loop or recursion######
+import math
+class Solution(object):
+    def isPowerOfFour(self, num):
+        ans = math.log(num)/math.log(4)
+        if math.floor(ans) == math.ceil(ans):
+           return True
+        else:
+            return False
+            
+Solution().isPowerOfFour(256) ##get True
