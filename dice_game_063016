@@ -1,0 +1,21 @@
+'''dice game
+source:https://projecteuler.net/problem=205
+'''
+def dice_game():                      ##construct a simulation by the law of large number
+    pyramidal = 0
+    prob = 0
+    four = [1,2,3,4]                   ##peter's dice
+    six = [1,2,3,4,5,6]                ##colin's dice
+    for i in range(1000):
+        peter = np.random.choice(four,9) ##roll the dice 9 times,sample with replacement
+        colin = np.random.choice(six,6)  ##roll the dice 6 times, sample with replacement
+        if sum(peter)>sum(colin):
+            pyramidal+=1
+    prob = float(pyramidal/1000)
+    return prob
+
+result = 0
+for i in range(1000):                 ##repeat the simulation a large amout of time and take the average
+    result += dice_game()
+print(format(float(result/10),'.5g'))  ##I got 57.293 on one run, 
+                                       ##57.269 on another,57.319 on yet another, pretty consistent
