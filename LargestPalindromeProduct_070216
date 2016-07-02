@@ -1,0 +1,31 @@
+'''Find the largest palindrome made from the product of two 3-digit numbers.
+   source:https://projecteuler.net/problem=4
+'''
+class Solution(object):
+    def isPalindrome(self,num):
+        m = str(num)
+        for i in  range(math.floor(len(m)/2)):
+            if m[i]!=m[-i-1]:
+               return False
+               break
+
+        return True
+    def LargestPalindromeProduct(self):
+        palindrome = []
+        lpp = 0
+        for i in range(999,500,-1):
+            for j in range(999,500,-1):
+                prod = i*j
+                if Solution().isPalindrome(prod):
+                    palindrome.append(prod)
+        if len(palindrome) == 0:               ##break it in half as it's more like for lpp to appear in the larger half
+                                               ##hopefully save computation time 
+            for i in range(500,100,-1):
+                for j in range(500,100,-1):
+                    prod = i*j
+                    if Solution().isPalindrome(prod):
+                        palindrome.append(prod)
+            lpp = max(palindrome)
+        else:
+            lpp = max(palindrome)
+        return lpp  ###result 906609
