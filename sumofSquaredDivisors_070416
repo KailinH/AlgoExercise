@@ -1,0 +1,34 @@
+'''
+Project Euler problem 401
+https://projecteuler.net/problem=401
+The divisors of 6 are 1,2,3 and 6.
+The sum of the squares of these numbers is 1+4+9+36=50.
+Let sigma2(n) represent the sum of the squares of the divisors of n. Thus sigma2(6)=50.
+Let SIGMA2 represent the summatory function of sigma2, that is SIGMA2(n)=∑sigma2(i) for i=1 to n.
+The first 6 values of SIGMA2 are: 1,6,16,37,63 and 113.
+Find SIGMA2(1015) modulo 109.
+'''
+import time
+start = time.time()
+print(start)
+class Solution(object):
+    def factorGenerator(self,n):
+        factors = []
+        for i in range(1,int(n/2)+1):
+            if n%i ==0:
+                factors.append(i)
+        factors.append(n)
+        return factors
+    def sigma2(self,n):
+        factors = Solution().factorGenerator(n)
+        #print([i**2 for i in factors])
+        squared_sum = sum([i**2 for i in factors])
+        return squared_sum
+    def SIGMA2(self,n):
+        summatory = 0
+        for i in range(1,n+1):
+            summatory+=Solution().sigma2(i)
+        ans = summatory%(10**9)
+        return ans
+  print(Solution().SIGMA2(100000)) ###thought: it took this program 3.5 secs to process 10**4, and way more(332.74secs) at 10**5
+                                   ###this is not a good solution for 10**15, still need more work
