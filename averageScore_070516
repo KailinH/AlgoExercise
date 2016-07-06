@@ -1,0 +1,10 @@
+'''calculate the average scores of 5 students over three subjects
+   with Python built-in function zip
+   source:https://www.hackerrank.com/challenges/zipped
+'''
+A = [89,90,78,93,80]
+B = [90,91,85,88,86]
+C = [91,92,83,89,90.5]
+X = [A]+[B]+[C]
+for student in zip(*X):
+    sys.stdout.write('\n'+str(np.mean(student)))
