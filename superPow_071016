@@ -1,0 +1,42 @@
+'''
+two methods to solve the Super Pow challenge:
+"Your task is to calculate ab mod 1337 where a is a positive integer and b is an extremely large positive integer given 
+in the form of an array."
+Source:https://leetcode.com/problems/super-pow/
+method 1 is faster than 2, as we can imagine
+'''
+import math
+import time
+start = time.time()
+class Solution(object):
+    def superPow(self, a, b):
+        y = 0
+        digit = len(b)-1
+        multiplier = []
+        for i in range(digit,-1,-1):
+            multiplier.append(10**i)
+        assert len(multiplier)==len(b)
+        for i in range(digit+1):
+            y+=b[i]*multiplier[i]
+        return (math.pow(a,y))%1337
+print(Solution().superPow(2,[3]))
+print(Solution().superPow(2,[1,0]))
+print("process = ", time.time()-start)
+
+class Solution(object):
+    def superPow(self, a, b):
+        y = 0
+        digit = len(b)-1
+        multiplier = []
+        for i in range(digit,-1,-1):
+            multiplier.append(10**i)
+        assert len(multiplier)==len(b)
+        for i in range(digit+1):
+            y+=b[i]*multiplier[i]
+        power=1
+        for i in range(y):
+            power *= a
+        return power%1337
+print(Solution().superPow(2,[3]))
+print(Solution().superPow(2,[1,0]))
+print("process = ", time.time()-start)
