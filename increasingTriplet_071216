@@ -1,0 +1,27 @@
+'''
+Given an unsorted array return whether an increasing subsequence of length 3 exists or not in the array.
+Source:
+https://leetcode.com/problems/increasing-triplet-subsequence/
+'''
+class Solution(object):
+    def increasingTriplet(self, nums):
+        size = len(nums)
+        for i in range(0,size-2):
+            count = 1
+            while count<=(size-i-1):
+                if nums[i+count]>nums[i]:
+                    right = nums[i+count:]
+                    if max(right)>nums[i+count]:
+                        return True
+                        break
+                count+=1
+        return False
+import random
+l1 = random.sample(range(1,10),9)
+l2 = random.sample(range(1,5),4)
+l3 = random.sample(range(1,8),7)
+l4 = random.sample(range(1,7),6)
+print(Solution().increasingTriplet(l1))
+print(Solution().increasingTriplet(l2))
+print(Solution().increasingTriplet(l3))
+print(Solution().increasingTriplet(l4))
