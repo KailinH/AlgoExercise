@@ -1,0 +1,23 @@
+'''
+https://projecteuler.net/problem=10
+Find the sum of all the primes below two million.
+'''
+
+def summationOfPrimes(ub):
+    def isPrime(num):
+        if num>1:
+            if num==2:
+                return True
+            if num %2 == 0:
+                return False
+            for current in range(3,int(math.sqrt(num)+1),2):
+                if num%current ==0:
+                    return False
+            return True
+        return False
+    sum = 0
+    for i in range(ub):
+        if isPrime(i):
+            sum+=i
+    return sum
+print(summationofPrimes(2000000)) ###result: 142913828922
