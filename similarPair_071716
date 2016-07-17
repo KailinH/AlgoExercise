@@ -1,0 +1,63 @@
+'''
+Given a tree where each node is labeled from  to , can you find the number of similar pairs in the tree?
+https://www.hackerrank.com/challenges/similarpair
+'''
+##read in system input##
+import sys
+from more_itertools import unique_everseen
+buffer = []
+while True:
+    line = sys.stdin.readline().rstrip('\n')
+    if line == 'quit':
+        break
+    else:
+        buffer.append(line)
+print("buffer:", buffer)
+
+##function###
+def similarPair(buffer):
+    count = 0
+    K = int(buffer[0][2])
+    nodes = int(buffer[0][2])
+    sons = []
+    parents = [b[:1] for b in buffer[1:]]
+    parents = list(unique_everseen(parents))
+    for p in parents:
+        sons.append([b[2] for b in buffer[1:] if b[:1] == p])
+    tree = dict(zip(parents,sons))   ##make a dictionary of a tree, where key is all the parents nodes, while sons are direct children
+    k_s = [k for k in tree.keys()]
+    bottom_up = list(reversed(parents))  ###we need the parent nodes to be bottom up
+    print(bottom_up)
+    for key in bottom_up:       ###augment the tree such that all not directly linked offsprings are included
+        for c in tree[key]:
+            if c in k_s:
+                for s in tree[c]:
+                    tree[key].append(s)
+    for k in tree.keys():
+        for cn in tree[k]:
+            diff = abs(int(k)-int(cn))
+            if diff <= K:
+                count+=1
+    return count
+ans = similarPair(buffer)
+sys.stdout.write(str(ans))
+
+######test case 1###########
+5 2
+3 2
+3 1
+1 4
+1 5
+answer:4
+
+########test case2#############
+9 2
+1 2 
+1 3
+2 4
+2 5
+3 6
+3 7
+4 8
+4 9
+answer 3
