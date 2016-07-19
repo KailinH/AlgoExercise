@@ -1,0 +1,53 @@
+'''
+https://projecteuler.net/problem=304
+main challenge: to generate Fibonacci sequences quickly
+'''
+def fibonacci(n):
+    fn = [0, 1,]   ###store it make a big difference, and they grow so fast
+    for i in range(2, n):
+        fn.append(fn[i-1] + fn[i-2])
+    return fn[-1]
+
+def isPrime(num):
+        if num>1:
+            if num==2:
+                return True
+            if num %2 == 0:
+                return False
+            for current in range(3,int(math.sqrt(num)+1),2):
+                if num%current ==0:
+                    return False
+            return True
+        return False
+
+
+m = 10**14+1       ###calculate the first prime after 10^14
+while m > 10**14:
+    if isPrime(m):
+       firstP = m
+       break
+    else:
+       m+=1
+
+an = [firstP,]
+def nextPrime(n):
+    ind = n-2
+    print(ind)
+    m = an[ind]+1
+    while m > an[n-2]:
+        if isPrime(m):
+            an.append(m)
+            return an[-1]
+        else:
+            m+=1
+    return
+bn = [fibonacci(an[0]),]
+def sumOfPrimonacci(ub):
+    sp = 0
+    for i in range(2,ub+1):
+        nextPrime(i)
+        bn.append(fibonacci(an[-1]))
+    sp = sum(bn)
+    ans = sp%1234567891011
+    return ans
+
