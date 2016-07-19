@@ -1,0 +1,32 @@
+'''
+Source:https://www.hackerrank.com/challenges/binomial-distribution-1
+A blindfolded marksman finds that on the average he hits the target 4 times out of 5. If he fires 4 shots, what is the probability of
+
+(a) more than 2 hits?
+
+(b) at least 3 misses?
+'''
+###binomial distribution###
+import math
+##a function to calculate binomial distribution##
+def nCk(n,k):
+    assert n>=k
+    if k == 0 or k == n:
+        return 1
+    else:
+        den = math.factorial(n-k)
+        numet = math.factorial(n)
+        while k>0:
+            numet = numet/k
+            k-=1
+        return numet/den
+
+def binomialDist(n,k,p):
+    prob = nCk(n,k)*(p**k)*((1-p)**(n-k))
+    return prob
+print("Probability of more than 2 hits:",binomialDist(4,3,0.8)+binomialDist(4,4,0.8) ) ##0.8192
+print("Probability of at least 3 misses:", binomialDist(4,0,0.8)+ binomialDist(4,1,0.8)) ##0.0272
+
+###or we can run the result against 
+###from scipy.stats import binom
+###prob = binom.pmf(2, 4,0.8), get the same result
