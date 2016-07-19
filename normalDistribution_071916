@@ -1,0 +1,16 @@
+'''
+Source:https://www.hackerrank.com/challenges/normal-distribution-2
+'''
+import sys
+from scipy.stats import norm
+ans1 = norm.cdf(19.5,20,2)
+ans2 = norm.cdf(22,20,2)-norm.cdf(20,20,2)
+
+sys.stdout.write('\n'+ str(ans1))
+sys.stdout.write('\n'+ str(ans2))
+
+'''
+answers are respectively 
+0.401293674317
+0.341344746069( well in-line with the 65-95-99.7 rule)
+'''
