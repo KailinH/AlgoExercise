@@ -1,0 +1,6 @@
+'''
+Python itertool exercise
+Source:https://www.hackerrank.com/challenges/compress-the-string
+'''
+for c,gp in groupby('1222311'):
+    sys.stdout.write('\n'+str((len(list(gp)),c)))
