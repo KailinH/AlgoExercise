@@ -1,0 +1,12 @@
+"""
+Source:https://projecteuler.net/problem=9
+"""
+
+def pythagoreanTriplet():
+    for a in range(1,500):
+        for b in range(1,500):
+            if a**2+b**2 == (1000-a-b)**2:
+                return a*b*(1000-a-b)
+
+print(pythagoreanTriplet())
+###31875000, where a = 200,b = 375, c = 425
