@@ -1,0 +1,16 @@
+'''
+The buzzfizz test
+'''
+def buzzfizz(n):
+    for i in range(n):
+        if i%3 == 0 and i% 5 ==0:
+            print(i,'buzzfizz')
+        elif i%3 == 0 :
+            print(i,'buzz')
+        elif i%5==0:
+            print(i,'fizz')
+        else:
+            print(i)
+    return
+
+buzzfizz(100)
