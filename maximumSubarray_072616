@@ -1,0 +1,30 @@
+"""
+The maximum contiguous subarray problem
+Source:https://www.hackerrank.com/challenges/maxsubarray
+"""
+def maximumSubarray(array):
+    contig = max(array)
+    noncont = 0
+    for s in array:
+        if s>=0:
+            noncont+=s
+    if noncont == 0:
+        noncont = max(array)
+    for j in range(2,len(array)+1):
+        for i in range(len(array)-j+1):
+            temp = sum(array[i:i+j])
+            if temp>=contig:
+                contig = temp
+    return str(contig)+' '+str(noncont)
+print(maximumSubarray([-2,1,-3,4,-1,2,1,-5,4]))
+print(maximumSubarray([2,-1,2,3,4,-5]))
+print(maximumSubarray([-2, -3, 4, -1, -2, 1, 5, -3]))
+print(maximumSubarray([1,2,3,4]))
+"""
+Disadvantage: computation time can grow very big as the array gets long
+result:
+6 12
+10 11
+7 10
+10 10
+"""
