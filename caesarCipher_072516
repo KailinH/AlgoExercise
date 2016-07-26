@@ -1,0 +1,25 @@
+"""
+Source: https://www.hackerrank.com/challenges/caesar-cipher-1
+"""
+import sys
+
+n = int(raw_input().strip())
+s = raw_input().strip()
+k = int(raw_input().strip())
+def caesarCipher(s,k):
+    alphab = list('abcdefghijklmnopqrstuvwxyz')
+    encripted = []
+    for l in s:
+        if l in alphab:
+            ind = (alphab.index(l)+2)%26
+            l = alphab[ind]
+            encripted.append(l)
+        elif l.lower() in alphab:
+            ind = (alphab.index(l.lower())+2)%26
+            l = alphab[ind]
+            encripted.append(l.upper())
+        else:
+            encripted.append(l)
+    return ''.join(encripted)
+
+print(caesarCipher(s,k))
