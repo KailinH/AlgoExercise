@@ -9,7 +9,7 @@ def is_palindrome(s):
         if s[0]!=s[1]:
             return False
         else:
-            is_palindrome(s[1:-1])
+            return is_palindrome(s[1:-1])
         
 print is_palindrome('')
 #>>> True
