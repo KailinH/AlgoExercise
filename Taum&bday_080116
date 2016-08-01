@@ -1,0 +1,20 @@
+"""
+Source:
+https://www.hackerrank.com/challenges/taum-and-bday?h_r=next-challenge&h_v=zen
+"""
+import sys
+t = int(input().strip())
+for a0 in range(t):
+    b,w = input().strip().split(' ')
+    b,w = [int(b),int(w)]
+    x,y,z = input().strip().split(' ')
+    x,y,z = [int(x),int(y),int(z)]
+    b_cost = b*x
+    w_cost = w*y
+    if x +z < y:
+        ans = b_cost+(x+z)*w
+    elif y+z < x:
+        ans = w_cost + (y+z)*b
+    else:
+        ans = b_cost+w_cost
+    sys.stdout.write(str(ans)+'\n')
