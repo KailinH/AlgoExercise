@@ -1,0 +1,32 @@
+""" 
+Source:
+https://www.hackerrank.com/challenges/kaprekar-numbers?h_r=next-challenge&h_v=zen
+"""
+p = int(input().split())
+q = int(input().split())
+def findKaprekar(p,q):
+    kaprekar = []
+    for i in range(p,q+1):
+        square = str(i**2)
+        split = len(str(i))
+        if len(square)==1:
+            if int(square) == i:
+                   kaprekar.append(str(i))
+        elif split ==1:
+            if int(square[0])+int(square[1]) == i:
+                kaprekar.append(str(i))
+        else:
+            part_l = square[:-split]
+            part_r = square[-split:]
+            if int(part_l)+int(part_r) == i:
+                kaprekar.append(str(i))
+            else:
+                if int(part_l)+int(part_r) == i:
+                    kaprekar.append(str(i))
+    if kaprekar:
+        sys.stdout.write(" ".join(kaprekar))
+    else:
+        sys.stdout.write("INVALID RANGE")
+    return
+    
+findKaprekar(p,q)
