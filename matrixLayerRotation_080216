@@ -1,0 +1,55 @@
+"""
+Source:
+https://www.hackerrank.com/challenges/matrix-rotation-algo?h_r=next-challenge&h_v=zen
+"""
+import sys
+M,N,R = input().strip().split(' ')
+M,N,R = [int(M),int(N),int(R)]
+matrix = []
+for i in range(M):
+    new=input().strip().split(' ')
+    matrix.append([int(a) for a in new])
+def matrixLayerRotation(matrix):
+    layers = int(min(M,N)/2)                ##layers represent the number of rotations##
+    linears = []
+    newl = []
+    new_matrix = []
+    for i in range(layers):
+        linears.append([])
+        newl .append([])
+    for i in range(M):
+        new_matrix.append([])
+    for i in range(layers):               ##linearize the layers
+        for j in range(i,N-i-1):
+            linears[i].append(matrix[i][j])
+        for j in range(i,M-i-1):
+            linears[i].append(matrix[j][N-1-i])
+        for j in range(N-i-1,i,-1):
+            linears[i].append(matrix[M-i-1][j])
+        for j in range(M-i-1,i,-1):
+            linears[i].append(matrix[j][i])
+    #print("linears:",linears)
+    for i in range(layers):                ##execute the rotation
+        #print(len(linears[i]))
+        for j in range(len(linears[i])):
+            newl[i].append(linears[i][(j+R)%len(linears[i])])
+    #print("newl:", newl)
+    for i in range (M):                    ##initialize the new matrix
+        for j in range(N):
+            new_matrix[i].append(0)
+    for i in range(layers):                ##reconstruct the new matrix from the rotated linearized layers
+        for j in range(i,N-i-1):
+            new_matrix[i][j] = newl[i].pop(0)
+        for j in range(i,M-i-1):
+            new_matrix[j][N-1-i] = newl[i].pop(0)
+        for j in range(N-i-1,i,-1):
+            new_matrix[M-i-1][j] = newl[i].pop(0)
+        for j in range(M-i-1,i,-1):
+            new_matrix[j][i] = newl[i].pop(0)
+    return new_matrix
+new_matrix = matrixLayerRotation(matrix)
+for i in range(M):
+    for j in range(N):
+        sys.stdout.write(str(new_matrix[i][j])+' ')
+    sys.stdout.write('\n')
+    
