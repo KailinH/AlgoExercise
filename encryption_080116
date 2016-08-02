@@ -1,0 +1,30 @@
+"""
+Source:
+https://www.hackerrank.com/challenges/encryption?h_r=next-challenge&h_v=zen
+"""
+import sys
+
+import math
+s = input().strip()
+def encryption(s):
+    L = len(s)
+    rows = math.floor(L**0.5)
+    cols = math.ceil(L**0.5)
+    if rows*cols<L:
+       rows = cols = math.ceil(L**0.5)
+    #print(rows,cols)
+    diff = rows*cols - L
+    grid = []
+    for i in range(rows):
+        grid.append([])
+        #print(s[i*cols:(i+1)*cols])
+        grid[-1] = s[i*cols:(i+1)*cols]
+    if diff>0:
+        grid[-1] = grid[-1].ljust(cols)
+    for i in range(cols):
+        enp = [r[i] for r in grid]
+        enp = [i for i in enp if i != ' ']
+        sys.stdout.write(''.join(enp)+' ')
+    return
+
+encryption(s)   
