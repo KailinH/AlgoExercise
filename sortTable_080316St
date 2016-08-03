@@ -1,0 +1,17 @@
+"""
+Source:
+HackerRank: Sort Data
+https://www.hackerrank.com/contests/pythonist/challenges/python-sort-sort
+The standard output process is not shown here
+"""
+
+def sortTable(table,k):
+    new_table = []
+    sort_base = [e[k] for e in table]
+    after_sort = sort_base.copy()
+    after_sort.sort()
+    for e in after_sort:
+        ind = sort_base.index(e)
+        new_table.append(table[ind])
+    return new_table
+print(sortTable(table,K))
