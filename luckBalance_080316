@@ -1,0 +1,21 @@
+"""
+Source:
+https://www.hackerrank.com/challenges/luck-balance
+"""
+import sys
+N,K = [int(val) for val in input().split()]
+ary = []
+for _ in range(N):
+    ary.append([int(val) for val in input().split()])
+luck = 0
+ig = []
+for l,i in ary:
+    if i == 0:
+        luck+=l
+    else:
+        ig.append(l)
+ordered_ig = sorted(ig)
+ordered_ig = list(reversed(ordered_ig)) ##the reverse order is what we want
+luck+=sum(ordered_ig[:K])
+luck-=sum(ordered_ig[K:])
+print(luck)
