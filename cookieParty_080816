@@ -1,0 +1,12 @@
+"""
+Source:https://www.hackerrank.com/contests/w22/challenges/cookie-party
+"""
+import sys
+n,m = input().strip().split(' ')
+n,m = [int(n),int(m)]
+ans = 0
+if n>=m:
+    ans = n-m
+else:
+    ans = n-m%n
+print(ans)
