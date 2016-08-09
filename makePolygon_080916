@@ -1,0 +1,13 @@
+"""
+Source:https://www.hackerrank.com/contests/w22/challenges/polygon-making
+"""
+import sys
+n = int(raw_input().strip())
+a = map(int,raw_input().strip().split(' '))
+a = list(a)
+m = a.index(max(a))
+if sum(a) - a[m] > a[m]:  ##using the property of polygon, n ines can form a polygon 
+                          ##when the longest line is still smaller than the sum of the rest
+    print 0
+else:
+    print 1
