@@ -1,0 +1,25 @@
+"""
+Source:https://leetcode.com/problems/reverse-integer/
+"""
+class Solution(object):
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        x = str(x)
+        l = len(x)
+        reversed = []
+        
+        if x[0]=='-':
+            reversed.append(x[0])
+            for i in range(len(x)-1,0,-1):
+                reversed.append(x[i])
+        else:
+            for i in range(len(x)-1,-1,-1):
+                reversed.append(x[i])
+        reversed = int(''.join(reversed))
+        if reversed > 2147483647 or reversed < -2147483647:
+            return 0
+        else:
+            return reversed
