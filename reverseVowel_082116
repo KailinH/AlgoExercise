@@ -1,0 +1,23 @@
+"""
+Source:https://leetcode.com/problems/reverse-vowels-of-a-string/
+"""
+class Solution(object):
+    def reverseVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        vowels = ['a','A','e','E','i','I','o','O','u','U']
+        vp = []
+        vs = []
+        s = list(s)
+        for i,e in enumerate(s):
+            if e in vowels:
+                vp.append(i)
+                vs.append(e)
+        vp.reverse()
+        for i,e in zip(vp,vs):
+            s[i] = e
+        s = ''.join(s)
+        return s
+            
