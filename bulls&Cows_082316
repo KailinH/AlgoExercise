@@ -1,0 +1,25 @@
+"""
+Source:https://leetcode.com/problems/bulls-and-cows/
+"""
+class Solution(object):
+    def getHint(self, secret, guess):
+        """
+        :type secret: str
+        :type guess: str
+        :rtype: str
+        """
+        bull = 0
+        cow = 0
+        mishit_s = []
+        mishit_g = []
+        for s,g in zip(secret,guess):
+            if s==g:
+                bull+=1
+            else:
+                mishit_s.append(s)
+                mishit_g.append(g)
+        for s in mishit_s:
+             if s in mishit_g:
+                cow+=1
+                mishit_g.remove(s)
+        return str(bull)+'A'+str(cow)+'B'
