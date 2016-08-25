@@ -1,0 +1,17 @@
+"""
+Source:
+"""
+class Solution(object):
+    def reverseString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        track = len(s)-1
+        rs = []
+        while track>=0:
+            rs.append(s[track])
+            track-=1
+        rs = ''.join(rs)    
+        return rs
+            
