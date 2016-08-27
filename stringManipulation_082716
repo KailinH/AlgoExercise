@@ -1,0 +1,16 @@
+"""
+Source: Hackerrank
+"""
+s = 'I may opt for a top yam for Amy, May, and Tommy.'##input
+import string
+exclude = set(string.punctuation)
+s = ''.join(ch for ch in s if ch not in exclude)
+s = ''.join(ch.lower() for ch in s)
+s = s.split(' ')
+s = [''.join(sorted(l)) for l in s]
+s = list(set(s))
+s = sorted(s)
+s = ' '.join(s)
+print(s)
+>>>'a adn amy for i mmoty opt' ##output
+ 
