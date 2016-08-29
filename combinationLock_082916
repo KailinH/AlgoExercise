@@ -1,0 +1,14 @@
+"""
+source:https://www.hackerrank.com/contests/world-codesprint-6/challenges/combination-lock
+"""
+initial_config = [int(inp) for inp in input().strip().split(' ')]
+desired_config = [int(inp) for inp in input().strip().split(' ')]
+total_rotate = 0
+for i,d in zip(initial_config,desired_config):
+    diff = abs(i-d)
+    if diff>5:        ##by observing the property of lock
+        total_rotate+=(10-diff)
+    else:
+        total_rotate+=diff
+print(total_rotate)
+        
