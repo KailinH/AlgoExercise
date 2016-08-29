@@ -1,0 +1,15 @@
+"""
+source:https://www.hackerrank.com/contests/world-codesprint-6/challenges/bon-appetit
+"""
+n,k = input().strip().split(' ')
+n,k = [int(n),int(k)]
+item = input().strip().split(' ')
+item = [float(it) for it in item]
+anna_pay = float(input().strip())
+even_split = sum(item)/2
+#print(sum(item),even_split,anna_pay)
+if anna_pay == even_split:
+    anna_refund = item[k]/2
+    print(int(anna_refund))
+else:
+    print('Bon Appetit')
