@@ -1,0 +1,29 @@
+"""
+Source:https://leetcode.com/problems/find-the-difference/
+"""
+class Solution(object):
+    def findTheDifference(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: str
+        """
+        s_count = {}
+        t_count = {}
+        k_s = []
+        k_t = []
+        for i,e in enumerate(s):
+            s_count[e] = s.count(e)
+        for i,e in enumerate(t):
+            t_count[e] = t.count(e)
+        for k, v in s_count.items():
+            k_s.append(k)
+        for k, v in t_count.items():
+            k_t.append(k)
+        if len(k_s) == len(k_t): # when the added letter is already in s
+            for k in k_s:
+                if s_count[k] != t_count[k]:
+                    return k
+        else: # when the added letter is something new
+            added = set(k_t)-set(k_s)
+            return ''.join(added)
