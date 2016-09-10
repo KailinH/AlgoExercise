@@ -1,0 +1,17 @@
+"""
+Source:https://www.hackerrank.com/challenges/pangrams
+"""
+s = input().strip()
+num = []
+l = list(range(97,123))
+for c in s:
+    av = ord(c)
+    if av>=65 and av<=90:
+        av+=32
+    num.append(av)
+num = set(num)
+pangram_test = [j for j in l if j not in num]
+if pangram_test:
+    print('not pangram')
+else:
+    print('pangram')
