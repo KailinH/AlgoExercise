@@ -1,0 +1,17 @@
+"""
+Source: https://leetcode.com/problems/remove-element/
+"""
+class Solution(object):
+    def removeElement(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        to_remove = []
+        for ind,v in enumerate(nums):
+            if v == val:
+                to_remove.append(ind)
+        for index in sorted(to_remove, reverse=True):
+            del nums[index]
+        return len(nums)
