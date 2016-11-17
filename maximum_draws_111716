@@ -1,0 +1,10 @@
+"""
+Source: https://www.hackerrank.com/challenges/maximum-draws
+"""
+import sys
+c = int(input().strip())
+cases = []
+for i in range(c):
+    cases.append(int(input().strip()))
+for j in cases:
+    print(j+1)
