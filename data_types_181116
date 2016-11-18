@@ -1,0 +1,23 @@
+"""
+Source:https://www.hackerrank.com/challenges/30-data-types?h_r=email&unlock_token=43b2904a7cfad0fdfaca2f1e70fe56d702b09a1e&utm_campaign=30_days_of_code_continuous&utm_medium=email&utm_source=daily_reminder
+"""
+i = 4 # you don't need to declare types in Python
+d = 4.0
+s = 'HackerRank '
+i2 = int(input().strip())
+d2 = float(input().strip())
+s2 = str(input().strip())
+# Print the sum of both integer variables on a new line.
+print(i+i2)
+# Print the sum of the double variables on a new line.
+print(d+d2)
+# Concatenate and print the String variables on a new line
+print(''.join([s,s2]))
+# The 's' variable above should be printed first.
+
+"""
+output:
+16
+8.0
+HackerRank is the best place to learn and practice coding!
+"""
