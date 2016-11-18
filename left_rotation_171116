@@ -1,0 +1,14 @@
+"""
+Source:https://www.hackerrank.com/challenges/ctci-array-left-rotation
+"""
+def array_left_rotation(a, n, k):
+    b = a.copy()
+    for i in range(n):
+        pos = (i+k)%n
+        b[i] = a[pos]
+    return b
+
+n, k = map(int, input().strip().split(' '))
+a = list(map(int, input().strip().split(' ')))
+answer = array_left_rotation(a, n, k);
+print(*answer, sep=' ')
