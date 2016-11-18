@@ -1,0 +1,13 @@
+"""
+Source: https://www.hackerrank.com/challenges/sum-vs-xor?h_r=next-challenge&h_v=zen
+bit manipulation
+"""
+import sys
+
+n = int(input().strip())
+if n== 0: # handle the special case when input is 0
+    ans = 1
+else:
+    ans = 2**(bin(n)[2:].count('0'))
+print(ans)
+
