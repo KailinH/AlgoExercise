@@ -1,0 +1,13 @@
+"""
+Source:http://www.lintcode.com/en/problem/move-zeroes/
+"""
+
+class Solution:
+    # @param {int[]} nums an integer array
+    # @return nothing, do this in-place
+    def moveZeroes(self, nums):
+        # Write your code here
+        l2 = [0]*(nums.count(0))
+        l1 = list(value for value in nums if value != 0)
+        ans = l1+l2
+        return ans
