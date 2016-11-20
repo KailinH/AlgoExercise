@@ -1,0 +1,17 @@
+"""
+Source:http://www.lintcode.com/en/problem/ugly-number/
+"""
+class Solution:
+    # @param {int} num an integer
+    # @return {boolean} true if num is an ugly number or false
+    def isUgly(self, num):
+        # Write your code here
+        if num < 1:
+            return False
+        while float(num) >= 2.0 and num%2 == 0:
+            num /= 2
+        while float(num)>= 3.0 and num%3 == 0:
+            num /= 3
+        while float(num)>= 5.0 and num%5 ==0:
+            num/=5
+        return num ==1
