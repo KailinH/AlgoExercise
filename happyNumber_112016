@@ -1,0 +1,22 @@
+"""
+Source:http://www.lintcode.com/en/problem/happy-number/
+"""
+#make sure not recurring element in the list
+#fundamental mathematical idea behind happe number: http://mathworld.wolfram.com/HappyNumber.html
+
+
+class Solution:
+    # @param {int} n an integer
+    # @return {boolean} true if this is a happy number or false
+    def isHappy(self, n):
+        # Write your code here
+        seq = []
+        saq_s = n
+        while n not in seq[:-1]:
+            l = list(map(int,str(n)))
+            saq_s = sum(map(lambda x:x*x,l))
+            seq.append(saq_s)
+            if saq_s == 1:
+                return True
+            n = saq_s
+        return False
