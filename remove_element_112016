@@ -1,0 +1,27 @@
+"""
+Source: http://www.lintcode.com/en/problem/remove-element/
+"""
+## two pointers ##
+
+class Solution:
+    """
+    @param A: A list of integers
+    @param elem: An integer
+    @return: The new length after remove
+    """
+    def removeElement(self, A, elem):
+        # write your code here
+        if elem in A:
+            front_pt = 0
+            back_pt = len(A)-1
+            while front_pt < back_pt:
+                if A[front_pt] == elem:
+                    while A[back_pt] == elem and back_pt > front_pt:
+                        back_pt -= 1
+                    A[front_pt], A[back_pt] = A[back_pt], A[front_pt]
+                    back_pt -= 1
+                front_pt += 1
+                ans = A[:(front_pt-1)]
+        else:
+            ans = A
+        return ans
