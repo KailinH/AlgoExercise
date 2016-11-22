@@ -1,0 +1,24 @@
+"""
+Source: http://www.lintcode.com/en/problem/paint-fence/
+"""
+
+class Solution:
+    # @param {int} n non-negative integer, n posts
+    # @param {int} k non-negative integer, k colors
+    # @return {int} an integer, the total number of ways
+    def numWays(self, n, k):
+        # Write your code here
+        ans = 0
+        if n > 2 and k == 1:  # two boundary cases
+            ans = 0
+        elif n == 1:
+            ans = k
+        else:
+            pf = [0,0,0] # only the previous two fences matter
+            factor = k-1
+            pf[0] = k
+            pf[1] = k*k
+            for i in range(2, n):
+                pf[i%3] = factor*(pf[(i-1)%3] + pf[(i-2)%3]) # constantly updating our list
+            ans = pf[(n-1)%3]
+        return ans
