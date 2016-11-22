@@ -1,0 +1,21 @@
+"""
+Source: http://www.lintcode.com/en/problem/intersection-of-two-arrays/
+"""
+# idea of hashset, O(n) time
+class Solution:
+    # @param {int[]} nums1 an integer array
+    # @param {int[]} nums2 an integer array
+    # @return {int[]} an integer array
+    def intersection(self, nums1, nums2):
+        # Write your code here
+        if len(nums1) == 0 or len(nums2) == 0:
+            return []
+        s1 = set()
+        for n in nums1:
+            if n not in s1:
+                s1.add(n)
+        res = set()
+        for m in nums2:
+            if m in s1:
+                res.add(m)
+        return list(res)
