@@ -1,0 +1,35 @@
+"""
+Source: http://www.lintcode.com/en/problem/add-binary/
+Given two binary strings, return their sum (also a binary string).
+"""
+class Solution:
+    # @param {string} a a number
+    # @param {string} b a number
+    # @return {string} the result
+    def addBinary(self, a, b):
+        # Write your code here
+        m = len(a)-1
+        n = len(b)-1
+        ans = ''
+        rmd = 0
+        while m >= 0 and n >= 0:
+            cur_sum = int(a[m]) + int(b[n]) + rmd
+            ans = str((cur_sum) % 2 )+ ans
+            rmd = (cur_sum) // 2
+            m -= 1
+            n -= 1
+        if m >= n:
+            while m >= 0:
+                cur_sum = int(a[m]) + rmd
+                ans = str((cur_sum) % 2) + ans
+                rmd = cur_sum // 2
+                m -= 1
+        else:
+            while n >= 0:
+                cur_sum = int(b[n]) + rmd
+                ans = str((cur_sum) % 2) + ans
+                rmd = cur_sum // 2
+                n -= 1
+        if rmd > 0:
+                ans = str(rmd) + ans
+        return ans
