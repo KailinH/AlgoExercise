@@ -1,0 +1,14 @@
+"""
+Source: https://www.hackerrank.com/challenges/handshake?h_r=next-challenge&h_v=zen
+how many handshakes take place given N persons in the room
+"""
+import sys
+T = int(input().strip())
+for a0 in range(T):
+    N = int(input().strip())
+    ans = 0
+    while N > 0:
+        ans += N-1
+        N -= 1
+    print(ans)
+
