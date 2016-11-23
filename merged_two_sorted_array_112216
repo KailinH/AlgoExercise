@@ -1,0 +1,20 @@
+"""
+Source: http://www.lintcode.com/en/problem/merge-two-sorted-arrays/
+"""
+class Solution:
+    #@param A and B: sorted integer array A and B.
+    #@return: A new sorted integer array
+    def mergeSortedArray(self, A, B):
+        # write your code here
+        res = []
+        while (A and B):
+            if A[0] <= B[0]:
+                item = A.pop(0)
+            else:
+                item = B.pop(0)
+            res.append(item)
+        if A:
+            res = res + A
+        else:
+            res = res + B
+        return res
