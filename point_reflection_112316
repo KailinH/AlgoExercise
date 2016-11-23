@@ -1,0 +1,9 @@
+"""
+Source:
+"""
+n = int(input().strip())
+for i in range(n):
+    case = [int(val) for val in input().strip().split(' ')]
+    res1 = case[2] - case[0] + case[2]
+    res2 = case[3] - case[1] + case[3]
+    print(res1, res2)
