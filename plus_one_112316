@@ -1,0 +1,25 @@
+"""
+Source:http://www.lintcode.com/en/problem/plus-one/
+Given a non-negative number represented as an array of digits, plus one to the number.
+
+The digits are stored such that the most significant digit is at the head of the list.
+"""
+class Solution:
+    # @param {int[]} digits a number represented as an array of digits
+    # @return {int[]} the result
+    def plusOne(self, digits):
+        # Write your code here
+        m = len(digits)-1
+        to_add = 1
+        while m >= 0:
+            init_sum = digits[m] + to_add
+            if init_sum % 10 == init_sum:
+                digits[m] = init_sum
+                return digits
+            else:
+                digits[m] = init_sum % 10
+                to_add = init_sum // 10
+                m -= 1
+        if to_add > 0:
+            digits.insert(0, to_add)
+        return digits
