@@ -1,0 +1,23 @@
+"""
+Source:
+"""
+## the solution that works but take too much time
+class Solution:
+    """
+    @param nums: A list of integers
+    @return: An integer denote the sum of maximum subarray
+    """
+    def maxSubArray(self, nums):
+        # write your code here
+        start = 0
+        end = len(nums)
+        max = sum(nums[start:end])
+        for i in range(len(nums)):
+            j = len(nums)
+            while j > i:
+                if sum(nums[i:j]) > max:
+                    max = sum(nums[i:j])
+                    start = i
+                    end = j
+                j -= 1
+        return max
