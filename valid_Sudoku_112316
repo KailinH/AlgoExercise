@@ -1,0 +1,41 @@
+"""
+Source:http://www.lintcode.com/en/problem/valid-sudoku/
+Determine if a Sudoku is valid
+"""
+class Solution:
+    # @param board, a 9x9 2D array
+    # @return a boolean
+    def isValidSudoku(self, board):
+
+        def isValidList(array):
+            allowed_nums = ['.','1', '2', '3', '4', '5', '6', '7', '8', '9']
+            nums = set()
+            count = 0
+            for a in array:
+                if a not in allowed_nums:
+                    return False
+                elif a != '.':
+                    count += 1
+                    nums.add(a)
+            if len(nums) < count:
+                return False
+            else:
+                return True
+        for i in range(9):
+                col = [s[i] for s in board]
+                col = ''.join(col)
+                row = board[i]
+                submatrix = [s[:3] for s in board[:3]]
+                if not isValidList(col) or not isValidList(row):
+                    return False
+
+        submatrices = [[s[:3] for s in board[:3]], [s[:3] for s in board[3:6]], 
+        [s[:3] for s in board[6:9]], [s[3:6] for s in board[:3]],
+        [s[3:6] for s in board[3:6]], [s[3:6] for s in board[6:9]], 
+        [s[6:9] for s in board[:3]], [s[6:9] for s in board[3:6]], 
+        [s[6:9] for s in board[6:9]]]
+        for sub in submatrices:
+            sub = sub[0]+sub[1]+sub[2]
+            if isValidList(sub) is False:
+                return False
+        return True
