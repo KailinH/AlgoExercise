@@ -1,0 +1,25 @@
+"""
+Source:http://www.lintcode.com/en/problem/remove-nth-node-from-end-of-list/
+Use two pinters technique, the idea is that the nth node from the end is (length-n+1)th node from the beginning
+"""
+"""
+Definition of ListNode
+class ListNode(object):
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+"""
+class Solution:
+    # @return a ListNode
+    def removeNthFromEnd(self, head, n):
+        dummy=ListNode(0) 
+        dummy.next=head
+        p1=p2=dummy
+        for i in range(n): 
+            p1=p1.next
+        while p1.next:
+            p1=p1.next
+            p2=p2.next
+        p2.next=p2.next.next  # the step of deleting
+        return dummy.next
