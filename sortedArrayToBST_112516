@@ -1,0 +1,30 @@
+"""
+Source:http://www.lintcode.com/en/problem/convert-sorted-array-to-binary-search-tree-with-minimal-height/
+Given a sorted (increasing order) array, Convert it to create a binary tree with minimal height.
+"""
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+
+class Solution:
+    """
+    @param A: a list of integer
+    @return: a tree node
+    """
+    def sortedArrayToBST(self, A):
+        # write your code here
+        if not A:
+            return None
+        mid = len(A)//2
+        tn = TreeNode(A[mid])
+        left_branch = A[:mid]
+        right_branch = A[mid+1:] 
+        tn.left = Solution().sortedArrayToBST(A[:mid])
+        tn.right = Solution().sortedArrayToBST(A[mid+1:])
+        return tn
+            
