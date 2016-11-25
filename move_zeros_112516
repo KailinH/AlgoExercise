@@ -1,0 +1,22 @@
+"""
+Source: http://www.lintcode.com/en/problem/move-zeroes/
+"""
+## two pointers technique
+class Solution:
+    # @param {int[]} nums an integer array
+    # @return nothing, do this in-place
+    def moveZeroes(self, nums):
+        # Write your code here
+        if nums:
+            front = 0
+            end = front+1
+            while end > front and end < len(nums):
+                if nums[front] == 0:
+                    #print('here')
+                    while end < len(nums)-1 and nums[end] == 0:
+                            end+=1
+                    #print('swapped', front, end)
+                    nums[front], nums[end] = nums[end], nums[front]
+                front+=1
+                end+=1
+        return nums
