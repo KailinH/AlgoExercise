@@ -1,0 +1,27 @@
+"""
+Source:http://www.lintcode.com/en/problem/remove-linked-list-elements/
+Remove all elements from a linked list of integers that have value val.
+"""
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    # @param head, a ListNode
+    # @param val, an integer
+    # @return a ListNode
+    def removeElements(self, head, val):
+        # Write your code here
+        if head == None:
+            return None
+        dummy = ListNode(0)
+        dummy.next = head # create a dummy variable, crucial, now dummy.next has values of head
+        head = dummy # head will be traversing the values of linked list, becasue now head and dummy occupy the same space in memory
+        while head.next:
+            if head.next.val == val:
+                head.next = head.next.next #deleting
+            else:
+                head = head.next #traversing
+        return dummy.next
