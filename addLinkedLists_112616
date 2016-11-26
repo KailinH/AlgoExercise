@@ -1,0 +1,44 @@
+"""
+Source:http://www.lintcode.com/en/problem/add-two-numbers/
+
+"""
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    # @param l1: the first list
+    # @param l2: the second list
+    # @return: the sum list of l1 and l2 
+    def addLists(self, l1, l2):
+        # write your code here
+        count = 0
+        if not l1:
+            return l2
+        if not l2:
+            return l1
+        if l1 and l2:
+            sum = l1.val + l2.val
+            while l1.next and l2.next:
+                l1,l2 = l1.next, l2.next
+                count += 1
+                sum += (l1.val + l2.val)*(10**count)
+        while l1.next:
+            l1 = l1.next
+            count += 1
+            sum += l1.val * (10**count)
+        while l2.next:
+            l2 = l2.next
+            count += 1
+            sum += l2.val * (10**count)
+        sum = str(sum)
+        ans = ListNode(0)
+        dum = ans  # the dummy variable is curcial here, to traverse the linked list
+        i = len(sum)-1
+        while i >= 0:
+            dum.next = ListNode(int(sum[i]))
+            dum = dum.next
+            i -= 1
+        return ans.next
