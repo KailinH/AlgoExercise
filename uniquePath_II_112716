@@ -1,0 +1,38 @@
+"""
+Source:http://www.lintcode.com/en/problem/unique-paths-ii/
+Follow up for "Unique Paths":
+Now consider if some obstacles are added to the grids. How many unique paths would there be?
+An obstacle and empty space is marked as 1 and 0 respectively in the grid.
+"""
+class Solution:
+    """
+    @param obstacleGrid: An list of lists of integers
+    @return: An integer
+    """
+    ## basic idea, if certain grid is blocked, no path possible to that grid
+    def uniquePathsWithObstacles(self, obstacleGrid):
+        # write your code here
+        m = len(obstacleGrid)
+        n = len(obstacleGrid[0])
+        if obstacleGrid[0][0] == 1 or obstacleGrid[m-1][n-1] == 1: # if either left corner or right corner of the grid is 1, no path
+            return 0
+        
+        unip = [[0 for y in range(n)] for x in range(m)]
+        unip[0][0] = 1
+        for i in range(m):
+            for j in range(n):
+                if i > 0 and j == 0:  # first column, if certain cell is blocked, no path to the rest of 1st column
+                    if obstacleGrid[i-1][j] == 1:
+                       unip[i-1][j] = 0
+                    unip[i][j] = unip[i-1][j] 
+                elif j > 0 and i == 0:  # first row, if certain cell is blocked, no path to the rest of 1st row
+                    if obstacleGrid[i][j-1] == 1:
+                        unip[i][j-1] = 0
+                    unip[i][j] = unip[i][j-1] 
+                elif i > 0 and j > 0:
+                    if obstacleGrid[i-1][j] == 1:
+                        unip[i-1][j] = 0
+                    if obstacleGrid[i][j-1] == 1:
+                        unip[i][j-1] = 0
+                    unip[i][j] = unip[i-1][j] + unip[i][j-1]
+        return unip[m-1][n-1]
