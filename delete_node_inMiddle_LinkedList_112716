@@ -1,0 +1,23 @@
+"""
+Source:http://www.lintcode.com/en/problem/delete-node-in-the-middle-of-singly-linked-list/
+Implement an algorithm to delete a node in the middle of a singly linked list, given only access to that node.
+"""
+"""
+Definition of ListNode
+class ListNode(object):
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+"""
+class Solution:
+    # @param node: the node in the list should be deleted
+    # @return: nothing
+    def deleteNode(self, node):
+        # write your code here
+        if node is None or node.next is None:
+            return 
+        next = node.next
+        node.val = next.val
+        node.next = next.next
+        return
