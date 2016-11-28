@@ -1,0 +1,29 @@
+"""
+Source:http://www.lintcode.com/en/problem/remove-duplicates-from-sorted-array-ii/
+Follow up for "Remove Duplicates":
+What if duplicates are allowed at most twice?
+"""
+class Solution:
+    """
+    @param A: a list of integers
+    @return an integer
+    """
+    def removeDuplicates(self, A):
+        # write your code here
+        if not A:
+            return None
+        front = 0
+        follow = 1
+        count = 0
+        while front < len(A):
+            while follow < len(A) and A[follow] != A[front]:
+                    follow += 1
+            while follow < len(A) and A[follow] == A[front]:
+                    count += 1
+                    if count > 1:
+                        del A[follow]
+                    follow += 1
+            front += 1
+            follow = front + 1
+            count = 0
+        return A
