@@ -1,0 +1,71 @@
+"""
+Source:
+"""
+### Solution I ###
+class Solution:
+    """
+    @param A: sorted integer array A which has m elements, 
+              but size of A is m+n
+    @param B: sorted integer array B which has n elements
+    @return: void
+    """
+    def mergeSortedArray(self, A, m, B, n):
+        # write your code here
+        # merge in place of A
+        if m == 0 and n == 0:
+            return None
+        if not A:
+            return B
+        if not B:
+            return A
+        
+        count = 0
+        for b in B:
+            start = m-1+count
+            csn = 0
+            while start >= 0 and b < A[start]:
+                if A[start-1] == A[start]: #hoping to save some computation if we have a lot consecutive arrays
+                    start -= 1
+                    csn += 1
+                else:
+                    A[start], A[start+1+csn] = b, A[start]
+                    csn = 0
+                    start -= 1
+            if b > A[start]:
+                A[start+1] = b
+            count += 1
+        return A
+        
+        
+### Solution II ###
+class Solution:
+    """
+    @param A: sorted integer array A which has m elements, 
+              but size of A is m+n
+    @param B: sorted integer array B which has n elements
+    @return: void
+    """
+    def mergeSortedArray(self, A, m, B, n):
+        # write your code here
+        # merge in place of A
+        if m == 0 and n == 0:
+            return None
+        if not A:
+            return B
+        if not B:
+            return A
+        
+        count = 0
+        for b in B:
+            start = m-1+count
+            csn = 0
+            while start >= 0 and b < A[start]:
+                A[start], A[start+1+csn] = b, A[start]
+                start -= 1
+            if b > A[start]:
+                A[start+1] = b
+            count += 1
+        return A
+        
+### solution III ###
+### no brainer, use built-in sort of Python ###
