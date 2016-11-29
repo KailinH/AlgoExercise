@@ -1,0 +1,17 @@
+"""
+Source:http://www.lintcode.com/en/problem/unique-characters/
+Implement an algorithm to determine if a string has all unique characters.
+Without using other data structure
+"""
+class Solution:
+    # @param s: a string
+    # @return: a boolean
+    def isUnique(self, str):
+        # write your code here
+        for i in range(len(str)-1):
+            comp = i + 1
+            while comp < len(str):
+                if str[comp] == str[i]:
+                    return False
+                comp += 1
+        return True
