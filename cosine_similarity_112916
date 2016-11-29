@@ -1,0 +1,26 @@
+"""
+Source:http://www.lintcode.com/en/problem/cosine-similarity/
+"""
+class Solution:
+    """
+    @param A: An integer array.
+    @param B: An integer array.
+    @return: Cosine similarity.
+    """
+    def cosineSimilarity(self, A, B):
+        # write your code here
+        numerator = 0
+        dnm_a = 0
+        dnm_b = 0
+        if A == B == []:
+            return 2.0000
+        for (a,b) in zip(A,B):
+            numerator += a*b
+            dnm_a += a**2
+            dnm_b += b**2
+        dnm = (dnm_a**(0.5) * dnm_b**(0.5))
+        if dnm == 0:
+            return 2.0000
+        ans = numerator/dnm
+        return ans
+        
