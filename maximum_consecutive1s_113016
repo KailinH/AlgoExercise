@@ -1,0 +1,16 @@
+"""
+Source:https://www.hackerrank.com/challenges/30-binary-numbers
+"""
+import sys
+n = int(input().strip())
+bi_n = bin(n)[2:]
+count = 0
+maxc = 0
+for s in bi_n:
+    if s == '1':
+        count += 1
+    else:
+        maxc = max(maxc, count)
+        count = 0
+maxc = max(maxc, count)
+print(maxc)
