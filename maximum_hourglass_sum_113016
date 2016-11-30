@@ -1,0 +1,15 @@
+"""
+Source:https://www.hackerrank.com/challenges/30-2d-arrays
+Calculate the hourglass sum for every hourglass in A, then print the maximum hourglass sum. A is a 6*6 2D array
+"""
+import sys
+arr = []
+for arr_i in range(6):
+   arr_t = [int(arr_temp) for arr_temp in input().strip().split(' ')]
+   arr.append(arr_t)
+max_sum = sum(arr[0][:3])+arr[1][1]+sum(arr[2][:3])
+for i in range(4):
+    for j in range(4):
+        tmp = sum(arr[i][j:j+3])+arr[i+1][j+1]+sum(arr[i+2][j:j+3])
+        max_sum = max(tmp, max_sum)
+print(max_sum)
