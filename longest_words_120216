@@ -1,0 +1,18 @@
+"""
+Source:Given a dictionary, find all of the longest words in the dictionary.
+"""
+class Solution:
+    # @param dictionary: a list of strings
+    # @return: a list of strings
+    def longestWords(self, dictionary):
+        # write your code here
+        maxl = 0
+        dict = {}
+        for w in dictionary:
+            l = len(w)
+            maxl = max(maxl, l)
+            if l not in dict:
+                dict[l] = [w]
+            else:
+                dict[l].append(w)
+        return dict[maxl]
