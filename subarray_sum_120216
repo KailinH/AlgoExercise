@@ -1,0 +1,29 @@
+"""
+Source:http://www.lintcode.com/en/problem/subarray-sum/
+Given an integer array, find a subarray where the sum of numbers is zero. 
+Your code should return the index of the first number and the index of the last number.
+"""
+class Solution:
+    """
+    @param nums: A list of integers
+    @return: A list of integers includes the index of the first number 
+             and the index of the last number
+    """
+    def subarraySum(self, nums):
+        # write your code here
+        if not nums:
+            return []
+        start = 0
+        trail = start
+        sums = nums[start]
+        while trail < len(nums):
+            if sums == 0:
+                return [start,start]
+            while trail < len(nums)-1 and sums != 0: 
+                trail += 1
+                sums += nums[trail]
+            if sums == 0:
+                return [start, trail]
+            start += 1
+            sums = nums[start]
+            trail = start
