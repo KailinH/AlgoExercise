@@ -1,0 +1,13 @@
+"""
+Source:http://www.lintcode.com/en/problem/reverse-words-in-a-string/
+Given an input string, reverse the string word by word.
+"""
+class Solution:
+    # @param s : A string
+    # @return : A string
+    def reverseWords(self, s):
+        # write your code here
+        l = s.strip().split(' ')
+        l.reverse()
+        ans = (' ').join(l)
+        return ans
