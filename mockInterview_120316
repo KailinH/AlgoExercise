@@ -1,0 +1,28 @@
+# Given a list, return the sum of the two greatest integers
+def sumTwoIntegers(arr):
+    if not arr:
+        return None
+    if len(arr) <= 1:
+        return sum(arr)
+    biggest = arr[0]
+    bigger = arr[1]
+    for n in arr[2:]:
+        if n > biggest:
+            bigger = biggest
+            biggest = n # account for the original biggest now becomes the new bigger
+        elif n > bigger:
+            bigger = n
+    ans = biggest + bigger
+    return ans
+
+# Given a list of anything, write a function that returns the list in reverse order.
+def reverseList(arr):
+   	#if not arr:
+    #  	return None
+    start = 0
+    end = len(arr)-1
+    while end > start:
+      arr[start], arr[end] = arr[end], arr[start]
+      start += 1
+      end -= 1
+    return arr
