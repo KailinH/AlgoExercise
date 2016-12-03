@@ -1,0 +1,29 @@
+"""
+Source:http://www.lintcode.com/en/problem/product-of-array-exclude-itself/
+Given an integers array A.
+Define B[i] = A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1], calculate B WITHOUT divide operation.
+"""
+class Solution:
+    """
+    @param A: Given an integers array A
+    @return: An integer array B and B[i]= A[0] * ... * A[i-1] * A[i+1] * ... * A[n-1]
+    """
+    def productExcludeItself(self, A):
+            # write your code here
+            def forwardProduct(ind,A):
+                product = 1
+                for i in range(ind):
+                    product *= A[i]
+                return product
+
+            def backwardProduct(ind, A):
+                product = 1
+                for i in range(ind+1, len(A))
+                    product *= A[i]
+                return product
+
+            res = []
+            for i in range(len(A)):
+                tmp = forwardProduct(i,A) * backwardProduct(i, A)
+                res.apend(tmp)
+            return res
