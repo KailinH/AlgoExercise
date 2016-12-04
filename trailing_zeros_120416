@@ -1,0 +1,31 @@
+"""
+Source:
+"""
+# this solution exceeds recursion limit and causes stack overflow when n is big
+class Solution:
+    # @param n a integer
+    # @return ans a integer
+    def factorial(self,n):
+            if n == 1:
+                return 1
+            else:
+                return n*self.factorial(n-1)
+    def trailingZeros(self, n):
+        n_fac = str(self.factorial(n))
+        end = len(n_fac)-1
+        res = 0
+        while end >= 0:
+            if n_fac[end]== '0':
+                res += 1
+            else:
+                return res
+            end -= 1
+        return res 
+        
+# a more mathematical way
+def trailingZeros(self, n):
+            sum = 0
+            while n != 0:
+                n /= 5
+                sum+= n
+            return sum
