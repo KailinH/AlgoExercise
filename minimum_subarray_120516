@@ -1,0 +1,36 @@
+"""
+Source:http://www.lintcode.com/en/problem/minimum-subarray/
+Given an array of integers, find the subarray with smallest sum.
+Return the sum of the subarray.
+"""
+class Solution:
+    """
+    @param nums: a list of integers
+    @return: A integer denote the sum of minimum subarray
+    """
+    def minSubArray(self, nums):
+        # write your code here
+        # if not nums:
+        #     return None
+        # if len(nums) == 1:
+        #     return nums[0]
+        # start = 0
+        # end = start + 1
+        # min_sum = sum(nums[start:end])
+        # for start in range(len(nums)):
+        #     while end < len(nums)+1:
+        #         min_sum = min(min_sum, sum(nums[start:end]))
+        #         end += 1
+        #     end = start + 2
+        # return min_sum
+
+        sum = 0
+        minSum = nums[0]
+        maxSum = 0
+        for num in nums:
+            sum += num
+            if sum - maxSum < minSum:
+                minSum = sum - maxSum
+            if sum > maxSum:
+                maxSum = sum
+        return minSum
