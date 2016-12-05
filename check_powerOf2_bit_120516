@@ -1,0 +1,12 @@
+"""
+Source: Lintcode
+"""
+def checkPowerOf2(n):
+# powers of 2 look like 10,100,1000,10000, etc
+  if n <= 0:
+    return False
+  if n == 2 or n == 1:
+    return True
+  if n & (n-1) == 0: # bit manipulation
+    return True
+  return False
