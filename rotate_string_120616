@@ -1,0 +1,22 @@
+"""
+Source:http://www.lintcode.com/en/problem/rotate-string/
+Given a string and an offset, rotate string by offset. (rotate from left to right)
+"""
+class Solution:
+    # @param s: a list of char
+    # @param offset: an integer 
+    # @return: nothing
+    def rotateString(self, s, offset):
+        if not s:
+            return None
+        if len(s)>0:
+            offset = offset%len(s)
+        if offset%len(s)==0:
+            return s
+        res = []
+        for i in range(offset):
+            res.append(s[i-offset])
+        for i in range(len(s)-offset):
+            res.append(s[i])
+        res = ''.join(res)
+        return res
