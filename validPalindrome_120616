@@ -1,0 +1,22 @@
+"""
+Source:http://www.lintcode.com/en/problem/valid-palindrome/
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+"""
+class Solution:
+    # @param {string} s A string
+    # @return {boolean} Whether the string is a valid palindrome
+    def isPalindrome(self, s):
+        # Write your code here
+        if not s:
+            return True
+        s = ''.join(e for e in s if e.isalnum()) #strip out space, punctuation 
+                                                        #and special character, only alphanumeric characters left
+        s = s.lower() 
+        start = 0
+        end = len(s) - 1
+        while start < end:
+            if s[start] != s[end]:
+                return False
+            start += 1
+            end -= 1
+        return True
