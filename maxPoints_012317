@@ -1,0 +1,32 @@
+"""
+Source: find the maximum number of points in the same line
+"""
+from fractions import Fraction
+def maxPoints(points):
+        # Write your code here
+        slopes = {}
+        duplicates = 0
+        for i in range(len(points)-1):
+            for j in range(i+1, len(points)):
+                if points[j][0] - points[i][0] == 0:
+                    n = 'v'+ str(points[i][0])
+                else:
+                    n = Fraction(points[j][1] - points[i][1], points[j][0] - points[i][0])
+                    if n == Fraction(70,23):
+                        print(points[i],points[j])
+                #print(points[j], points[i], n)
+                slopes[n] = slopes.get(n,1) + 1
+        def gransum(n):
+            res = 0
+            for i in range(1,n+1):
+                res += i
+            return res-n+1
+        max = 0
+        for k,v in slopes.items():
+            #print(k,v)
+            if v >= max:
+                max = v
+        for i in range(max):
+            if gransum(i) <= max and gransum(i+1) >= max:
+                return i+1
+        return max
