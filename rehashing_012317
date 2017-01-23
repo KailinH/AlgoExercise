@@ -1,0 +1,53 @@
+"""
+Source:http://www.lintcode.com/en/problem/rehashing/
+"""
+"""
+Definition of ListNode
+class ListNode(object):
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+"""
+class Solution:
+    """
+    @param hashTable: A list of The first node of linked list
+    @return: A list of The first node of linked list which have twice size
+    """
+    def rehashing(self, hashTable):
+        # write your code here
+        if not hashTable:
+            return None
+        size = 0
+        capacity = len(hashTable)
+        all = []
+        for k in hashTable:
+            if k:
+                all.append(k.val)
+                while k.next:
+                    all.append(k.next.val)
+                    k = k.next 
+        newsize = len(hashTable) * 2
+        dict = {}
+        for i in range(newsize):
+            dict[i] = []
+        pos = [v % newsize for v in all]
+        for v in all:
+            ind = v % newsize
+            dict[ind].append(v)
+        result = []
+        #print(all,dict)
+        for i in range(newsize):
+            if dict[i]:
+                #print(dict[i])
+                dummy = ListNode(0)
+                ln = dummy
+                for i in dict[i]:
+                    ln.next = ListNode(i)
+                    ln = ln.next
+                    #print(dummy.next)
+                result.append(dummy.next)
+            else:
+                result.append(None)
+        return result
+                
