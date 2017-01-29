@@ -1,0 +1,35 @@
+"""
+Source: http://www.lintcode.com/en/problem/evaluate-reverse-polish-notation/
+"""
+class Solution:
+    # @param {string[]} tokens The Reverse Polish Notation
+    # @return {int} the value
+    def evalRPN(self, tokens):
+        # Write your code here
+        if not tokens:
+            return None
+        vo = ['+', '-', '*', '/']
+
+        def evaluate(a, b, operand):
+            if operand == '+':
+                return a + b
+            if operand == '-':
+                return a - b
+            if operand == '*':
+                return a * b
+            if operand == '/':
+                return int(a / b)
+
+        new_list = []
+        for i in range(len(tokens)):
+            if tokens[i].isdigit():
+                new_list.append(tokens[i])
+            elif tokens[i][0] == '-' and tokens[i][1:].isdigit():
+                new_list.append(tokens[i])
+            else:
+                if len(new_list) >= 2 and tokens[i] in vo:
+                    res = evaluate(int(new_list[-2]), int(new_list[-1]), tokens[i])
+                    del new_list[-1]
+                    del new_list[-1]
+                    new_list.append(res)
+        return int(new_list[0])
