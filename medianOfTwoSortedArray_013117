@@ -1,0 +1,26 @@
+"""
+Source: http://www.practice.geeksforgeeks.org/problem-page.php?pid=240
+"""
+def median_sum(A, B, N):
+    #loc = N
+    if A[-1] <= B[0]:
+        return A[-1] + B[0]
+    elif B[-1] <= A[0]:
+        return A[0] + B[-1]
+
+    pa = 0
+    pb = 0
+    sorteda = []
+    while pa < N and pb < N and len(sorteda) <= N:
+        while A[pa] <= B[pb]:
+            sorteda.append(A[pa])
+            pa += 1
+            if len(sorteda) == N+1:
+                break
+            print(sorteda)
+        sorteda.append(B[pb])
+        pb += 1
+        if len(sorteda) == N+1:
+            break
+        print(sorteda)
+    return sorteda[N-1] + sorteda[N]
