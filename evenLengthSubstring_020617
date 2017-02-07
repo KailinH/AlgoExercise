@@ -1,0 +1,18 @@
+"""
+Longest Even Length Substring such that Sum of First and Second Half is same
+Source:http://www.geeksforgeeks.org/longest-even-length-substring-sum-first-second-half/
+"""
+def find_length(str, n):
+    if not str:
+        return None
+    cum_sum = []
+    cum_sum.append(0)
+    ans = 0
+    for i in range(n):
+        cum_sum.append(cum_sum[-1]+int(str[i]))
+    for len in range(2,n+1,2):
+        for i in range(n-len+1):
+            j = i + len - 1
+            if cum_sum[i+int(len/2)] - cum_sum[i] == cum_sum[i+len] - cum_sum[i+int(len/2)]:
+                ans = max(ans, len)
+    return ans
