@@ -1,0 +1,19 @@
+"""
+Source:https://www.interviewcake.com/question/python/product-of-other-numbers
+O(n) time and O(n) space, greedy algorithms
+"""
+def get_products_of_all_ints_except_at_index(int_list):
+    if len(int_list) < 2:
+        raise IndexError('Getting the product of numbers at other indices requires at least 2 numbers')
+    left_prod = [int_list[0]]
+    right_prod = [int_list[-1]]
+    for i in range(1,len(int_list)):
+        left_prod.append(left_prod[-1]*int_list[i])
+    for i in range(1,len(int_list)):
+        right_prod.append(right_prod[-1]*int_list[-(i+1)])
+    right_prod.reverse() # another O(n) space, not optimal
+    res = [right_prod[1]]
+    for i in range(1,len(int_list)-1):
+        res.append(left_prod[i-1] *right_prod[i+1])
+    res.append(left_prod[-2])
+    return left_prod, right_prod, res
