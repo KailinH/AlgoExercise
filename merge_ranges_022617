@@ -1,0 +1,32 @@
+"""
+"Write a function merge_ranges() that takes a list of meeting time ranges and returns a list of condensed ranges."
+Source:https://www.interviewcake.com/question/python/merging-ranges
+"""
+def merge_ranges(meeting_time):
+    meeting_time = sorted(meeting_time) # make sure the list of tuple is sorted by starting time
+    if len(meeting_time)< 2:
+        raise Exception('Not enough meetings to merge')
+
+    if meeting_time[0][0] <= meeting_time[1][0]:
+        first_m = meeting_time[0]
+        second_m = meeting_time[1]
+    else:
+        first_m = meeting_time[1]
+        second_m = meeting_time[0]
+    res = []
+    if second_m[0] <= first_m[1]:
+            new_range = (min(first_m[0],second_m[0]),max(first_m[1],second_m[1]))
+            first_m = new_range
+    else:
+            first_m = second_m
+    for i in range(2,len(meeting_time)):
+        second_m = meeting_time[i]
+        if second_m[0] <= first_m[1]:
+            new_range = (min(first_m[0],second_m[0]),max(first_m[1],second_m[1]))
+            first_m = new_range
+        else:
+            res.append(first_m)
+            first_m = second_m
+
+    res.append(first_m)
+    return res
