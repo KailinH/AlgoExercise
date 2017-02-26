@@ -1,0 +1,28 @@
+"""
+Given an integer, find the highest product with three integers
+First attempt, doesn't always return the correct solution, [1, 10, -5, 1, -100]
+Didn't keep track of highest_product_2 and lowest_product_2
+"""
+def highest_3_products(list_of_ints):
+    if len(list_of_ints) == 3:
+        ans = functools.reduce(lambda x, y: x*y, list_of_ints)
+    def three_select(val_dict, tt,d, current_max):
+        val_dict['0'] = [tt[0], tt[1], tt[2]]
+        val_dict['1'] = [tt[0],tt[1],d]
+        val_dict['2'] = [tt[1],tt[2],d]
+        val_dict['3'] = [tt[0],tt[2],d]
+        l = [functools.reduce(lambda x, y: x*y, val_dict['0']),functools.reduce(lambda x, y: x*y, val_dict['1']),
+            functools.reduce(lambda x, y: x*y, val_dict['2']),functools.reduce(lambda x, y: x*y, val_dict['3'])]
+        current_max = max(l)
+        ind = l.index(max(l))
+        tt = val_dict[str(ind)]
+        return current_max, tt
+    tt = [list_of_ints[0],list_of_ints[1],list_of_ints[2]]
+    val_dict = {}
+    current_max = functools.reduce(lambda x, y: x*y, tt)
+    print('initail max:', current_max)
+    for i in range(3,len(list_of_ints)):
+        current_max, tt = three_select(val_dict, tt,list_of_ints[i],current_max)
+        print(current_max, tt)
+    ans = current_max
+    return ans
