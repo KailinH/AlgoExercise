@@ -1,0 +1,23 @@
+"""
+Find the highest three products given a list
+O(n), greedy solution
+keep track of highest, lowest, highest_2_product, lowest_2_product all together
+"""
+def highest_3_products2(list_of_ints):
+    if len(list_of_ints) == 3:
+        ans = functools.reduce(lambda x, y: x*y, list_of_ints)
+    highest_3_product = list_of_ints[0]*list_of_ints[1]*list_of_ints[2]
+    highest_2_product = max(list_of_ints[0]*list_of_ints[1], list_of_ints[0]*list_of_ints[2],
+                            list_of_ints[2]*list_of_ints[1])
+    highest = max(list_of_ints[0], list_of_ints[1], list_of_ints[2])
+    lowest_2_product = min(list_of_ints[0]*list_of_ints[1], list_of_ints[0]*list_of_ints[2],
+                           list_of_ints[2]*list_of_ints[1])
+    lowest = min(list_of_ints[0], list_of_ints[1], list_of_ints[2])
+    for i in range(3, len(list_of_ints)):
+        highest_3_product = max(highest_3_product, lowest_2_product*list_of_ints[i],highest_2_product*list_of_ints[i])
+        lowest_2_product = min(lowest_2_product, list_of_ints[i]*lowest) 
+        highest_2_product = max(highest_2_product, list_of_ints[i]*highest)
+        lowest = min(lowest, list_of_ints[i])
+        highest = max(highest, list_of_ints[i])
+    ans = highest_3_product
+    return ans
