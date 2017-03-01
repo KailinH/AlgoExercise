@@ -1,0 +1,27 @@
+"""
+Source:https://www.interviewcake.com/question/python/temperature-tracker
+"""
+class TempTracker:
+
+    def __init__(self):
+        self.temp_record = []
+
+    def insert(self, t):
+        self.temp_record.append(t)
+
+
+    def get_max(self):
+
+        return max(self.temp_record)
+
+    def get_min(self):
+
+        return min(self.temp_record)
+
+    def get_mode(self):
+        data = Counter(self.temp_record)
+        res = data.most_common(1)[0][0]
+        return res
+
+    def get_mean(self):
+        return sum(self.temp_record)/len(self.temp_record)
