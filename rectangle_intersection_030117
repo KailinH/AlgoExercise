@@ -1,0 +1,36 @@
+"""
+Source:https://www.interviewcake.com/question/python/rectangular-love
+Given two rectangles stored in dictionaries, find the area of their intersection 
+"""
+def rectangle_intersection(me, you):
+    if me['left_x'] <= you['left_x']:
+        l,r = me, you
+    else:
+        r,l = me, you
+    if me['bottom_y'] <= you['bottom_y']:
+        d,u = me, you
+    else:
+        u,d = me, you
+
+    def find_w_overlap(l,r):
+        if l['left_x'] + l['width'] <= r['left_x']:
+            intersection_w = 0
+        elif l['left_x'] + l['width'] >= r['left_x'] + r['width']:
+            intersection_w = r['width']
+        else:
+            intersection_w = l['left_x'] + l['width'] - r['left_x']
+        return intersection_w
+
+    def find_h_overlap(d,u):
+        if d['bottom_y'] + d['height'] <= u['bottom_y']:
+            intersection_h = 0
+        elif d['bottom_y'] + d['height'] >= u['bottom_y'] + u['height']:
+            intersection_h = u['height']
+        else:
+            intersection_h = d['bottom_y'] + d['height'] - u['bottom_y']
+        return intersection_h
+
+    intersection_w = find_w_overlap(l,r)
+    intersection_h = find_h_overlap(d,u)
+
+    return intersection_w * intersection_h
