@@ -1,0 +1,13 @@
+"""
+Source:https://www.hackerrank.com/challenges/sock-merchant
+"""
+import sys
+n = int(input().strip())
+c = [int(c_temp) for c_temp in input().strip().split(' ')]
+
+from collections import Counter
+pairs = Counter(c)
+res = 0
+for c, num in pairs.items():
+    res += num//2
+print(res)  
