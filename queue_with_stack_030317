@@ -1,0 +1,16 @@
+"""
+Source:https://www.hackerrank.com/challenges/queue-using-two-stacks
+"""
+
+import sys
+queue = []
+queries = int(input().strip())
+for q in range(queries):
+    temp = input().strip().split(' ')
+    if len(temp) > 1:
+        queue.append(int(temp[1]))
+    elif int(temp[0]) == 2:
+        queue.pop(0)
+    else:
+        print(queue[0])
+    
