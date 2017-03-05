@@ -1,0 +1,28 @@
+"""
+Source:https://www.interviewcake.com/question/python/find-rotation-point
+Binary search
+"""
+def binary_rotation_index(words):
+    dict = {'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8, 'i':9, 'j':10,
+           'k':11, 'l':12, 'm':13, 'n':14, 'o':15, 'p':16, 'q':17, 'r':18, 's':19,
+           't':20, 'u':21,'v':22, 'w':23, 'x':24,'y':25,'z':26}
+    start_index = dict[words[0][0].lower()]
+    end_index = dict[words[-1][0].lower()]
+    mid = len(words)//2
+    start, end = 0, len(words)
+    while dict[words[mid][0].lower()] >= dict[words[mid-1][0].lower()]:
+        if dict[words[mid][0].lower()] <= start_index:
+            end = mid
+            mid = start + (mid-start) //2
+            
+        else:
+            start = mid
+            mid = mid + (end-mid)//2
+            
+    return mid
+binary_rotation_index(words)
+
+"""
+Note: No need to consruct a dictionary for this, I can simply compare strings.
+'bug' < 'dog' would return True
+"""
