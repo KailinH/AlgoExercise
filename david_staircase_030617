@@ -1,0 +1,22 @@
+"""
+Source: https://www.hackerrank.com/challenges/ctci-recursive-staircase
+Recursion, memoization
+"""
+def num_ways(n):
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
+    if n == 3:
+        return 4
+    prev_1, prev_2,prev_3 = 4,2,1
+    if n > 3:
+        for i in range(3,n):
+            current = prev_1 + prev_2 + prev_3
+            prev_1, prev_2, prev_3 = current, prev_1, prev_2
+    return current
+
+s = int(input().strip())
+for a0 in range(s):
+    n = int(input().strip())
+    print(num_ways(n))
