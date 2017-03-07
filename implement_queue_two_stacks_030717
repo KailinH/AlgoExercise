@@ -1,0 +1,32 @@
+"""
+Source: https://www.interviewcake.com/question/python/queue-two-stacks
+"""
+class Queue:
+    def __init__(self):
+        self.in_stack = []
+        self.out_stack = []
+    def enqueue(self,n):
+        self.in_stack.append(n)
+        return self.in_stack
+    def dequeue(self):
+        if len(self.out_stack) == 0:
+            while len(self.in_stack) > 0:
+                newest_in_stack_item = self.in_stack.pop()
+                self.out_stack.append(newest_in_stack_item)
+            if len(self.out_stack) == 0:
+                raise IndexError("Can't dequeue from empty queue!")
+        return self.out_stack.pop()
+    def peek(self):
+        if len(self.out_stack) == 0:
+            while len(self.in_stack) > 0:
+                newest_in_stack_item = self.in_stack.pop()
+                self.out_stack.append(newest_in_stack_item)
+            if len(self.out_stack) == 0:
+                raise IndexError("Can't peek from empty queue!")
+        return self.out_stack[-1]
+    def is_empty(self):
+        if self.in_stack or self.out_stack:
+            return False
+        else:
+            return True
+        
