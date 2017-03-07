@@ -1,0 +1,38 @@
+"""
+Source:https://www.interviewcake.com/question/python/linked-list-cycles
+Check whether a linked list contains a cycle
+"""
+
+### O(n) time and O(n) space solution ###
+def contains_cycle1(root):
+    cycle = False
+    if not root:
+        return True
+    seen = [root.value]
+    while root.next:
+        if root.next.value not in seen:
+            seen.append(root.next.value)
+        else:
+            cycle = True
+            return cycle
+        root.next = root.next.next
+    return cycle    
+    
+### O(n) time and O(1) space solution ###
+### the fact the a fast runner in cycle will eventually catch up with the slow runner ###
+def contains_cycle(root):
+    cycle = False
+    if not root:
+        return True
+    slow_runner = LinkedListNode(0)
+    fast_runner = LinkedListNode(0)
+    slow_runner.next = root
+    fast_runner.next = root
+    #start
+    while fast_runner.next:
+        fast_runner = fast_runner.next.next 
+        slow_runner = slow_runner.next
+        if fast_runner is slow_runner:
+            cycle = True
+            return cycle
+    return cycle
