@@ -1,0 +1,33 @@
+"""
+Source:https://www.interviewcake.com/question/python/kth-to-last-node-in-singly-linked-list
+Technique: Two pointers; O(1) space and O(n) time, stack can only go forward!
+class LinkedListNode:
+
+    def __init__(self, value):
+        self.value = value
+        self.next  = None
+"""
+
+def kth_to_lastNode(k,root):
+    if not root:
+        return None
+    stick_right_end = root
+    stick_left_end = root
+    for i in range(k):
+        if not stick_right_end.next:
+            raise ValueError('k is larger than the length of the linked list: %s' % k)
+        stick_right_end = stick_right_end.next
+    while stick_right_end:
+        stick_right_end = stick_right_end.next
+        stick_left_end = stick_left_end.next
+    return stick_left_end.value
+    
+a = LinkedListNode("Angel Food")
+b = LinkedListNode("Bundt")
+c = LinkedListNode("Cheese")
+d = LinkedListNode("Devil's Food")
+e = LinkedListNode("Eccles")
+a.next = b
+b.next = c
+c.next = d
+d.next = e
