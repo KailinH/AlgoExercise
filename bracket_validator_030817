@@ -1,0 +1,21 @@
+"""
+Source:https://www.interviewcake.com/question/python/bracket-validator
+Using the idea of stack, pop both closer and corresponding opener out of the stack when they match
+"""
+def bracket_validator(str):
+    bbp = []
+    openers = ['(', '{', '[']
+    closers = [')', '}', ']']
+    for s in str:
+        if s in openers or s in closers:
+            print(s)
+            bbp.append(s)
+            if s in closers:
+                pos = closers.index(s)
+                print(bbp,pos)
+                if bbp[-2] != openers[pos]:
+                    return False
+                else:
+                    bbp.pop()
+                    bbp.pop()
+    return True
