@@ -1,0 +1,22 @@
+"""
+Source:https://www.interviewcake.com/question/python/recursive-string-permutations
+"""
+def permutation_generator(str):
+    
+    if not str:
+        return None
+    if len(str)==1:
+        res = []
+        res.append(str)
+        return res
+    if len(str) > 1:
+        #print(str[:-1])
+        current_set = permutation_generator(str[:-1])
+        new_set = []
+        for p in current_set:
+            for i in range(len(str)):
+                new = p[:i] + str[-1] +p[i:]
+                new_set.append(new)
+        current_set = current_set + new_set
+    res = [c  for c in current_set if len(c) == len(str)]
+    return res
