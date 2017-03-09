@@ -1,0 +1,15 @@
+"""
+Source:https://www.interviewcake.com/question/python/top-scores
+Use the fact that the scores have an upper bound and use counting sort to achieve O(n) time and O(n) space
+"""
+def sort_rankings(unsorted_score, highest_possible_score):
+    score_count = [0]* (highest_possible_score+1)
+    for s in unsorted_score:
+        score_count[s] += 1
+    filled = 0
+    for m,n in enumerate(score_count):
+        if n != 0:
+            for i in range(n):
+                unsorted_score[filled] = m
+                filled += 1
+    return unsorted_score
