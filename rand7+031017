@@ -1,0 +1,15 @@
+"""
+Source: https://www.interviewcake.com/question/python/simulate-7-sided-die
+use rand5() to generate 1-7 with equal probabilities, because 7 and 5 are both prime, no n such that 5^n is divisible by 7, followed by the fundamental theorem of arithmetic
+so we throw out extra results
+"""
+import random
+def rand7():
+    num1 = random.randint(1, 5)
+    num2 = random.randint(1, 5)
+    if num1 == 5 and num2 <2:
+        return (num1 + num2) %7 + 1
+    if num1 != 5:
+        return (num1 + num2) %7 + 1
+    else:
+        return rand7()
