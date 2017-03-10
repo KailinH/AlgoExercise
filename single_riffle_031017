@@ -1,0 +1,15 @@
+"""
+Source:https://www.interviewcake.com/question/python/single-rifle-check
+O(n) time and I(1) space
+"""
+def single_riffle(shuffled_deck, half1, half2):
+    while shuffled_deck:
+        if half1 and shuffled_deck[-1] == half1[-1]:
+            shuffled_deck.pop() # but popping will change the input, try using pointer for half1 and half2 respectively
+            half1.pop()
+        elif half2 and shuffled_deck[-1] == half2[-1]:
+            shuffled_deck.pop()
+            half2.pop()
+        else:
+            return False
+    return True
