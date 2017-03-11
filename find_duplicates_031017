@@ -1,0 +1,27 @@
+"""
+Source: https://www.interviewcake.com/question/python/find-duplicate-optimize-for-space
+O(1) space and O(nlgn)
+"""
+def find_duplicate(ints,start,end):
+    mid = start + (end-start)//2
+    print('start, mid, end', start, mid, end)
+    left_half = mid - start + 1
+    right_half = end - mid
+    print(left_half, right_half, (start,mid+1),(mid+1, end+1))
+    if (end-start) < 2:
+        return end
+    count_l, count_r = 0, 0
+    for i in ints:
+        if i in range(start,mid+1):
+            count_l += 1
+        if i in range(mid+1, end+1):
+            count_r += 1
+    print(count_l, count_r, left_half, right_half)
+    if count_l > left_half:
+        print('in left')
+        return find_duplicate(ints,start, mid)
+    elif count_r > right_half:
+        print('in right')
+        return find_duplicate(ints, mid, end)
+    else:
+        return 'No duplicates'
