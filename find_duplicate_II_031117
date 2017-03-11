@@ -1,0 +1,29 @@
+"""
+Source:https://www.interviewcake.com/question/python/find-duplicate-optimize-for-space-beast-mode
+do it in O(n) time and O(1) space, by traversing a list like a linked list
+"""
+def find_duplicate_II(ints,n):
+    # make sure we enter the circle
+    cur_index = len(ints)-1
+    for i in range(n):
+        next_node = ints[cur_index]
+        cur_index = next_node - 1
+    print('enter circle:', cur_index)
+    # to count the length of a circle, by recognizing a point we've seen before
+    next_node = ints[cur_index] - 1
+    count = 1
+    while next_node != cur_index:
+        next_node = ints[next_node - 1]
+        print('in loop:', next_node)
+        count += 1
+    print('circle len:', count)
+    # found the length of cycle
+    ahead_pointer = count
+    behind_pointer = 0
+    while ahead_pointer != behind_pointer:
+            ahead_pointer = ints[ahead_pointer - 1]
+            behind_pointer = ints[behind_pointer - 1]
+    # when ahead_pointer and behind_pointer meet, we know we are at the head of circle, aka, the duplicate points
+    return ahead_pointer
+ints = [3,1,2,2]
+find_duplicate_II(ints,3)
