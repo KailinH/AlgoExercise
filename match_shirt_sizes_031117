@@ -1,0 +1,44 @@
+"""
+https://www.hackerrank.com/contests/womens-codesprint-3/challenges/hackathon-shirts
+"""
+### use set union and intersection ###
+import sys
+q = int(input().strip())
+for a0 in range(q):
+    count = 0
+    n = int(input().strip())
+    sizes = list(map(int, input().strip().split(' ')))
+    v = int(input().strip())
+    size_set = set(sizes)
+    vendor_set = set()
+    for a1 in range(v):
+        smallest,largest = input().strip().split(' ')
+        smallest,largest = [int(smallest),int(largest)]
+        # your code goes here
+        vendor_set = vendor_set.union(set(range(smallest,largest+1)))
+    available_sizes = size_set.intersection(vendor_set)
+    count = len(available_sizes)
+    print(count)
+    
+### naive for loop ###
+import sys
+q = int(input().strip())
+for a0 in range(q):
+    count = 0
+    n = int(input().strip())
+    sizes = list(map(int, input().strip().split(' ')))
+    v = int(input().strip())
+    vendor_tuple = []
+    for a1 in range(v):
+        smallest,largest = input().strip().split(' ')
+        smallest,largest = [int(smallest),int(largest)]
+        # your code goes here
+        vendor_tuple.append((smallest,largest))
+   for s in sizes:
+      for t in vendor_tuple:
+        if s >= t[0] and s <= t[1]:
+          count += 1
+          break
+   print(count)
+          
+                
