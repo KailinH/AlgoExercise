@@ -1,0 +1,30 @@
+"""
+Source:http://www.lintcode.com/en/problem/the-smallest-difference/
+Two pointers; sort; array
+"""
+class Solution:
+    # @param A, B: Two lists of integer
+    # @return: An integer
+    def smallestDifference(self, A, B):
+        # write your code here
+        A.sort()
+        B.sort()
+        #print(A,B)
+        a_pointer = 0
+        b_pointer = 0
+        smallest_diff = abs(A[a_pointer] - B[b_pointer])
+        while a_pointer < len(A) or b_pointer < len(B):
+            if A[a_pointer] < B[b_pointer]:
+                a_pointer += 1
+                if a_pointer == len(A): # stops because we reach the end and since lists are sorted, so we have answer
+                    return smallest_diff
+                smallest_diff = min(smallest_diff, abs(A[a_pointer] - B[b_pointer]))
+            elif A[a_pointer] > B[b_pointer]:
+                b_pointer += 1
+                if b_pointer == len(B):
+                    return smallest_diff
+                b_pointer = min(len(B)-1, b_pointer)
+                smallest_diff = min(smallest_diff, abs(A[a_pointer] - B[b_pointer]))
+            else:
+                return 0
+        return smallest_diff
