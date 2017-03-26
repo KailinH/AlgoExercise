@@ -1,0 +1,28 @@
+"""
+Source: http://www.lintcode.com/en/problem/route-between-two-nodes-in-graph/
+DFS
+"""
+# Definition for a Directed graph node
+# class DirectedGraphNode:
+#     def __init__(self, x):
+#         self.label = x
+#         self.neighbors = []
+
+class Solution:
+    """
+    @param graph: A list of Directed graph node
+    @param s: the starting Directed graph node
+    @param t: the terminal Directed graph node
+    @return: a boolean value
+    """
+    def hasRoute(self, graph, s, t):
+        # write your code here
+        visited = []
+        self.DFS_helper(s, visited, graph)
+        return (t in visited) 
+            
+    def DFS_helper(self, v, visited, graph):
+        visited.append(v)
+        for i in v.neighbors:
+            if i not in visited:
+                self.DFS_helper(i,visited, graph)
