@@ -1,0 +1,23 @@
+"""
+Source:http://www.lintcode.com/en/problem/container-with-most-water/
+Two pointer technique and dynamic programming, start from both end as this is the maximum width, 
+then move the pointer in favor of bigger height and update the maximum each time
+"""
+class Solution:
+    # @param heights: a list of integers
+    # @return: an integer
+    def maxArea(self, heights):
+        # write your code here
+        if not heights:
+            return 0
+        start = 0
+        end = len(heights) - 1
+        max_area = (end-start) * min(heights[start], heights[end])
+        while (end - start) > 1:
+            if heights[start] <= heights[end]:
+                start += 1
+            else:
+                end -= 1
+            cur_area = (end - start)*min(heights[start], heights[end])
+            max_area = max(cur_area, max_area)
+        return max_area         
