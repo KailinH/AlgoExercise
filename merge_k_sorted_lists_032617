@@ -1,0 +1,46 @@
+"""
+Source:http://www.lintcode.com/en/problem/merge-k-sorted-lists/
+But it doesn't pass some crazy cases
+"""
+"""
+Definition of ListNode
+class ListNode(object):
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+"""
+class Solution:
+    """
+    @param lists: a list of ListNode
+    @return: The head of one sorted list.
+    """
+    def mergeKLists(self, lists):
+        # write your code here
+        if not lists:
+            return None
+        if len(lists) < 2:
+            return lists[0]
+        cur = self.merge_two(lists[0], lists[1])
+        if len(lists) >2:
+            for i in range(2,len(lists)):
+                cur = self.merge_two(cur, lists[i])
+        return cur   
+            
+    def merge_two(self, list_1, list_2):
+        dummy = merged =  ListNode(0)
+        if not list_1 and not list_2:
+            return None
+        while list_1 and list_2:
+            if list_1.val <= list_2.val:
+                merged.next = ListNode(list_1.val)
+                list_1 = list_1.next
+            else:
+                merged.next = ListNode(list_2.val)
+                list_2 = list_2.next
+            merged = merged.next
+        if not list_1:
+            merged.next = list_2
+        if not list_2:
+            merged.next = list_1
+        return dummy.next
