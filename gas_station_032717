@@ -1,0 +1,29 @@
+"""
+Source:
+"""
+## naive method, two for loop, O(n^2), too much time cost
+class Solution:
+    # @param gas, a list of integers
+    # @param cost, a list of integers
+    # @return an integer
+    def canCompleteCircuit(self, gas, cost):
+        # write your code here
+        start = 0
+        gas_in_tank = 0
+        done = False
+        while start < len(gas) and not done:
+            #print(start)
+            for i in range(start,start + len(gas)+1):
+                gas_in_tank += gas[i%(len(gas))]
+                gas_in_tank -= cost[i%(len(gas))]
+                if gas_in_tank < 0:
+                    #print(gas_in_tank)
+                    start += 1
+                    gas_in_tank = 0
+                    break
+            if gas_in_tank > 0:
+                done = True
+        if done:
+            return start
+        else:
+            return -1
