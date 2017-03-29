@@ -1,0 +1,32 @@
+"""
+Source:http://www.lintcode.com/en/problem/construct-binary-tree-from-preorder-and-inorder-traversal/
+By recognizing the order of root,left subtree and right subtree in two kinds of traversal result
+"""
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+
+class Solution:
+    """
+    @param preorder : A list of integers that preorder traversal of a tree
+    @param inorder : A list of integers that inorder traversal of a tree
+    @return : Root of a tree
+    """
+    def buildTree(self, preorder, inorder):
+        # write your code here
+        if not preorder:
+            return None
+        root = TreeNode(preorder[0])
+        divid = inorder.index(preorder[0])
+        left_inorder = inorder[:divid]
+        right_inorder = inorder[divid+1:]
+        left_preorder = preorder[1 : 1 + divid]
+        right_preorder = preorder[1 + divid:]
+        root.left = self.buildTree(left_preorder, left_inorder)
+        root.right = self.buildTree(right_preorder, right_inorder)
+        return root
