@@ -1,0 +1,21 @@
+"""
+Source:http://www.lintcode.com/en/problem/longest-common-prefix/
+string and basic implementation
+"""
+class Solution:
+    # @param strs: A list of strings
+    # @return: The longest common prefix
+    def longestCommonPrefix(self, strs):
+        # write your code here
+        lcp = ''
+        if not strs:
+            return lcp
+        lengths = [len(s) for s in strs]
+        min_length = min(lengths)
+        for i in range(min_length):
+            lcp += strs[0][i]
+            for s in strs[1:]:
+                if s[i] != lcp[-1]:
+                    return lcp[:-1]
+            
+        return lcp
