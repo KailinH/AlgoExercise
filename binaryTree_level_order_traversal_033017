@@ -1,0 +1,31 @@
+"""
+Source:http://www.lintcode.com/en/problem/binary-tree-level-order-traversal/
+Use preorder helper to keep track of levels
+"""
+"""
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+
+
+class Solution:
+    """
+    @param root: The root of binary tree.
+    @return: Level order in a list of lists of integers
+    """
+    def levelOrder(self, root):
+        res=[]
+        self.preorder(root, 0, res)
+        return res
+       
+    def preorder(self, root, level, res):
+        if root:
+            if len(res) < level+1: 
+                res.append([])
+            res[level].append(root.val)
+            # preorder, root, left, right
+            self.preorder(root.left, level+1, res) #keep track of the layer
+            self.preorder(root.right, level+1, res)
