@@ -1,0 +1,20 @@
+"""
+Source: http://www.lintcode.com/en/problem/sort-letters-by-case/
+Two pointer, string method c.islower() in Python
+"""
+class Solution:
+    """
+    @param chars: The letters array you should sort.
+    """
+    def sortLetters(self, chars):
+        # write your code here
+        front_pointer = 0
+        end_pointer = len(chars) - 1
+        while front_pointer < end_pointer:
+            if chars[front_pointer].islower():
+                front_pointer += 1
+            if not chars[end_pointer].islower():
+                end_pointer -= 1
+            else:
+                chars[front_pointer], chars[end_pointer] = chars[end_pointer],chars[front_pointer]
+        return chars
