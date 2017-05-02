@@ -1,0 +1,48 @@
+"""
+Source:http://www.lintcode.com/en/problem/convert-sorted-list-to-balanced-bst/
+Time complexity O(nlogn), recursive
+"""
+"""
+Definition of ListNode
+class ListNode(object):
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+
+Definition of TreeNode:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+"""
+class Solution:
+    """
+    @param head: The first node of linked list.
+    @return: a tree node
+    """
+    def sortedListToBST(self, head):
+        # write your code here
+        if not head:
+            return None
+        ll_len = 0
+        counter = head
+        while counter:
+            counter = counter.next
+            ll_len += 1
+        return self.helper(head, ll_len) #keep track of the length of list
+        
+    def helper(self, head, ll_len):
+        if not head:
+            return None
+        if ll_len < 1:
+            return None
+        pointer = head
+        cur_count = 1
+        while cur_count <= ll_len//2:
+            pointer = pointer.next
+            cur_count += 1
+        bst = TreeNode(pointer.val)
+        bst.left = self.helper(head, cur_count-1)
+        bst.right = self.helper(pointer.next, ll_len - cur_count)
+        return bst
