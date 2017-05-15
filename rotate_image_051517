@@ -1,0 +1,35 @@
+"""
+Rotate an image(which is represented by a matrix by 90 degree)
+"""
+## a stupid way, easy to make mistakes##
+##use a helper fucntion, which is called recursively, to rotate the outer layer of the matrix ##
+def rotate_outterlayer(matrix):
+    for i in range(start,(j+1)//2):
+        temp1 = matrix[i][j-1] 
+        matrix[i][j-1] = matrix[n-j][i]
+        temp2 = matrix[j-1][j-1-i]
+        matrix[j-1][j-1-i] = temp1
+        temp1 = matrix[j-1-i][n-j]
+        matrix[j-1-i][n-j] = temp2
+        matrix[n-j][i] = temp1
+        
+        
+        
+ # a smarter way, first transpose the matrix, then reverse each row #
+ class Solution:
+    """
+    @param matrix: A list of lists of integers
+    @return: Nothing
+    """
+    def rotate(self, matrix):
+        # write your code here
+        n = len(matrix)
+        if not matrix:
+            return None
+        for i in range(n):
+            for j in range(i+1, n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        for i in range(n):
+            for j in range(n//2):
+                matrix[i][j], matrix[i][n-j-1] = matrix[i][n-j-1], matrix[i][j]
+        return matrix
