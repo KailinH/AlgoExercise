@@ -1,0 +1,44 @@
+def wholeSquare(A,B):
+"""
+find the number of whole square numbers in range [A,B]
+time complexity O(sqrt(B))
+space complexity O(1)
+"""
+    if B < 0:
+        return 0
+    if B == 0:
+        return 1
+    ws = 0
+    if A < 0:
+        start = 0
+    else:
+        start = A**(0.5)
+    if start == int(start):
+        ws += 1
+    start = int(start)
+    while (start+1)**2 <= B:
+        ws+=1
+        start += 1
+    return ws
+  
+def solution(s):
+"""
+Find the sentence that contains the largest number of words
+"""
+    if not s:
+       return 0
+    eos = ['.','?','!'] #marking end of sentence
+    sens = []
+    start = 0 #start of new sentence
+    for i in range(len(s)):
+        if s[i] in eos:
+            sens.append(s[start:i])
+            start= i+1
+    sens.append(s[start:])
+    #print(sens)
+    largest = 0
+    for sen in sens:
+        cur = [ el for el in sen.split(' ') if el!='']
+        #print(cur)
+        largest = max(len(cur), largest)
+    return largest
