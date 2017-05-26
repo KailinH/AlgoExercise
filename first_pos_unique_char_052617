@@ -1,0 +1,23 @@
+"""
+Source: Lintcode
+Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+"""
+class Solution:
+    # @param {string} s a string
+    # @return {int} it's index
+    def firstUniqChar(self, s):
+        # Write your code here
+        counter = dict()
+        occured = set() #a set to keep track of elements that have occured
+        for i in range(len(s)):
+            k = s[i]
+            if k not in occured:
+                counter[k] = i
+            if k in occured and k in counter:
+                del counter[k]
+            occured.add(k)
+        if not counter:
+            return -1
+        #find the key with smallest value
+        ans = min(counter.items(), key=lambda x: x[1])[1] 
+        return ans
