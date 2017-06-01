@@ -1,0 +1,20 @@
+"""
+Source:https://www.hackerrank.com/challenges/jumping-on-the-clouds-revisited?h_r=next-challenge&h_v=zen
+"""
+import sys
+
+n,k = raw_input().strip().split(' ')
+n,k = [int(n),int(k)]
+c = map(int,raw_input().strip().split(' '))
+pos = 0
+end = False
+E = 100
+while not end:
+    pos = (pos+k)%n
+    if c[pos] == 1:
+        E -= 3
+    else:
+        E -= 1
+    if pos == 0:
+        print E
+        end = True
