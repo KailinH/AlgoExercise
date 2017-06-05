@@ -1,0 +1,15 @@
+"""
+Use Euclidean Algorithm to find the greatest common divisor of two number
+"""
+def euclidean_algo(a,b):
+    # an algorithm to find the greatest common divisor between two numbers
+    if a == 0 or b == 0:
+        return None
+    gcd = 1
+    sn = min(a,b)
+    bn = max(a,b)
+    rmd = bn - (bn//sn)*sn 
+    if rmd == 0:
+        gcd = sn
+        return gcd
+    return euclidean_algo(sn,rmd)  #call the function recursively
