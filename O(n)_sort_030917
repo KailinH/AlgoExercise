@@ -1,6 +1,7 @@
 """
 Source:https://www.interviewcake.com/question/python/top-scores
 Use the fact that the scores have an upper bound and use counting sort to achieve O(n) time and O(n) space
+counting sort
 """
 def sort_rankings(unsorted_score, highest_possible_score):
     score_count = [0]* (highest_possible_score+1)
