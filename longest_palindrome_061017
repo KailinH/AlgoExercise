@@ -1,0 +1,28 @@
+"""
+given a string, find the length of the longest possible palindrome it can form
+data structure: hashtable
+"""
+def longestPalindrome(s):
+        # Write your code here
+        if not s:
+            return 0
+        char_count = {}
+        for char in s:
+            if char not in char_count:
+                char_count[char] = 1
+            else:
+                char_count[char] += 1
+        print char_count
+        lp = 0
+        mid = False
+        for k,v in char_count.items():
+            if v % 2 == 0:
+                lp += v
+            elif v % 2 == 1: #when the character doesn't occur an even number of time, consider (v-1)
+                lp += (v-1)
+                mid = True
+        if mid == True: #we take one extra from odd occurence characters to be middle of palindrome
+            lp += 1
+        return lp
+s = "NTrQdQGgwtxqRTSBOitAXUkwGLgUHtQOmYMwZlUxqZysKpZxRoehgirdMUgy"
+longestPalindrome(s)
