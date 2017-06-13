@@ -1,0 +1,19 @@
+"""
+convert a base 10 number to a number in base k, k>=2
+mathematics
+"""
+def base_converstion(n, k):
+    if k < 2:
+        raise VauleError('k must be greater than or equal to 2')
+    quotient = n
+    ret = []
+    while quotient >= k:
+        n = quotient
+        quotient = n//k
+        rmd = n - k *(n//k)
+        ret.append(str(rmd))
+    ret.append(str(quotient))
+    ret = ''.join(ret[::-1])
+    return int(ret)
+base_converstion(2572,9) 
+#return 3467
