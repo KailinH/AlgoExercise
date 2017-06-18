@@ -1,0 +1,27 @@
+"""
+Source:http://www.lintcode.com/en/problem/permutation-sequence/
+"""
+class Solution:
+    """
+    @param n: n
+    @param k: the k-th permutation
+    @return: a string, the k-th permutation
+    """
+    def getPermutation(self, n, k):
+        ret = ''
+        total_perm = 1
+        candidates = [str(i) for i in range(1,n+1)]
+        for i in range(1,n+1):
+            total_perm *= i
+        while len(candidates) > 1:
+            folds = total_perm / n #calculate number of folds
+            fold_num = int(math.ceil(float(k)/folds)-1) #which fold our solution falls into
+            num_1 = candidates[fold_num]
+            candidates.remove(num_1)
+            sub_seq = (k - folds*fold_num)
+            ret += num_1
+            total_perm /= n #update the values for total_permutation, n and k
+            n = len(candidates)
+            k = sub_seq
+        ret += str(candidates[0])
+        return ret
