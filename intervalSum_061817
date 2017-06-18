@@ -1,0 +1,29 @@
+"""
+Source:http://www.lintcode.com/en/problem/interval-sum/
+"""
+class Interval(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+"""
+
+
+class Solution:	
+    """
+    @param A, queries: Given an integer array and an Interval list
+                       The ith query is [queries[i-1].start, queries[i-1].end]
+    @return: The result list
+    """
+    def intervalSum(self, A, queries):
+        # write your code here
+        if not A or not queries:
+            return None
+        ret = []
+        #define a list to store sum to save future computation
+        pos_sum = [0]
+        for i in range(len(A)):
+            pos_sum.append(A[i]+pos_sum[i])
+        for q in queries:
+            cur = pos_sum[q.end+1] - pos_sum[q.start]
+            ret.append(cur)
+        return ret
