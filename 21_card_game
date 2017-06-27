@@ -1,0 +1,39 @@
+"""
+YOU ARE PLAYING A CARD GAME AGAINST ONE OPPONENT. THE GAME STARTS WITH 21 CARDS ON A TABLE. YOU AND YOUR OPPONENT ALTERNATE TURNS, 
+AND DURING EACH TURN, A PLAYER MAY PICK UP 1, 2 OR 3 CARDS. THE WINNER IS THE PERSON 
+THAT PICKS UP THE LAST CARD. YOU GO FIRST. WHAT IS YOUR FIRST MOVE, AND WHAT IS THE OPTIMAL STRATEGY TO WIN THIS GAME?
+Ans:You pick 1 card first (leaving 20), then you want to respond to all opponent picks by picking a number that totals 4 combined
+with their last pick. So, you pick 1. Then, if they pick 3, you pick 1…if they pick 2, you pick 2…if they pick 1, you pick 3. 
+This ensures that you’re always leaving them with a multiple of 4 (first 20, then 16, 12, 8, 4), right until the end, when you leave 
+them with exactly 4. 
+When they’re stuck with 4, they are out of luck, because regardless if they pick 1, 2 or 3, you will be able to win in the next turn.
+http://www.streetofwalls.com/finance-training-courses/quantitative-hedge-fund-training/quant-interview-questions-answers/
+"""
+import random 
+def card_game(a):
+    #a stands for the card I draw, b stands for the card my opponent draw
+    card = 21
+    winner = a
+    while card >= 0:
+        card -= a
+        if card == 0:
+            winner = 'me'
+            break
+        b = random.choice([1,2,3])
+        card -= b
+        if card == 0:
+            winner = 'opponent'
+            break
+        a = 4 - b
+        print 'when b pick %d,there are %d cards left,I will pick %d in the next move' %(b,card,a)
+    return winner
+card_game(1) #the strategy is that I start with taking out 1 card 
+
+"""
+one simulation result
+when b pick 3,there are 17 cards left,I will pick 1 in the next move
+when b pick 3,there are 13 cards left,I will pick 1 in the next move
+when b pick 2,there are 10 cards left,I will pick 2 in the next move
+when b pick 1,there are 7 cards left,I will pick 3 in the next move
+when b pick 2,there are 2 cards left,I will pick 2 in the next move
+"""
