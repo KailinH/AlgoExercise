@@ -1,0 +1,12 @@
+# use monte carlo simulation to show that pi = 3.14
+from numpy import random
+random.seed(17)
+count = 0
+for i in range(100000):
+    x = random.uniform()
+    y = random.uniform()
+    if x**2 + y**2 <= 1:
+        count += 1
+print count
+res = 4*(float(count)/100000)
+print res   #got 3.1456 
