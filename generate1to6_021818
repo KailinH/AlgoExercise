@@ -1,0 +1,26 @@
+"""
+#Given a random generator function that return 0 or 1 with equal probability, create another random function that will
+#return any value between [0,6] with equal probability 
+Idea -- use the function randint(0,1), we know that we get head/tail with equal probability, to get value vetween [0,6] with eqaul 
+probability, we assign the odd numbers to 1, even numbers to 0
+"""
+from random import *
+res_list  = [0,0,0,0,0,0]
+head = 0
+tail = 0
+even_start = 2
+odd_start = 1
+for i in range(10000):
+    x = randint(0,1)
+    if x == 0:
+        head += 1
+        res = even_start%6
+        even_start += 2
+        res_list[res-1] += 1
+    elif x == 1:
+        tail += 1
+        res = odd_start%6
+        odd_start += 2
+        res_list[res-1] += 1
+        
+#example result: [1694, 1640, 1694, 1639, 1694, 1639]
