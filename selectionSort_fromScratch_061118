@@ -1,0 +1,26 @@
+"""
+Implementing selection sort from scratch
+"""
+def swap(arr, firstInd, secondInd):
+    temp = arr[firstInd]
+    arr[firstInd] = arr[secondInd]
+    arr[secondInd] = temp
+    return arr
+   
+def indexOfMinimum(arr, startInd):
+    cur_min = arr[startInd]
+    cur_minInd = startInd
+    for i in range(startInd+1, len(arr)):
+        #print('i:', i)
+        if arr[i] < cur_min:
+            cur_min = arr[i]
+            #print(cur_min)
+            cur_minInd = i
+    return cur_minInd
+    
+def selectionSort(arr):
+    for i in range(len(arr)-1):
+        cur_minInd = indexOfMinimum(arr, i)
+        print(i,cur_minInd)
+        swap(arr,i,cur_minInd)
+    return arr
