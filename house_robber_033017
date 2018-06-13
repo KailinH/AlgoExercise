@@ -2,6 +2,11 @@
 Source:http://www.lintcode.com/en/problem/house-robber/
 House robber Dynamic Programming problem
 O(n) time O(n) memory
+adjacent houses have security system connected and it will automatically contact the police if two adjacent houses were 
+broken into on the same night.
+Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money 
+you can rob tonight without alerting the police.
+l = [3, 8, 4]
 """
 class Solution:
     # @param A: a list of non-negative integers.
