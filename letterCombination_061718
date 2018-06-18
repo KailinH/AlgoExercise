@@ -1,0 +1,28 @@
+"""
+Given a digit string excluded 01, return all possible letter combinations that the number could represent.
+A mapping of digit to letters (just like on the telephone buttons) is given below.
+https://www.lintcode.com/problem/letter-combinations-of-a-phone-number/description
+key: use recursion
+"""
+
+class Solution:
+    """
+    @param digits: A digital string
+    @return: all posible letter combinations
+    """
+    def letterCombinations(self, digits):
+        # write your code here
+        digit_letter_map = {'2':'abc','3':'def','4':'ghi','5':'jkl','6':'mno','7':'pqrs','8':'tuv','9':'wxyz'}
+        if digits == '':
+            return []
+        if len(digits) == 1:
+            letters = digit_letter_map[digits[-1]]
+            return [d for d in letters]
+        if len(digits) > 1:
+            cur_combo = self.letterCombinations(digits[:-1])
+            new_letters = digit_letter_map[digits[-1]]
+            ret = []
+            for cc in cur_combo:
+                for nl in new_letters:
+                    ret.append(cc+nl)
+            return ret
