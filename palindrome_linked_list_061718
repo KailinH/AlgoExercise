@@ -1,0 +1,41 @@
+"""
+Implement a function to check if a linked list is a palindrome.
+Example
+Given 1->2->1, return true
+
+O(n) time/O(n) space Solution: using a stack to store node values as we traverse the linked list, then traverse again and compare with 
+the popped element from stack
+
+to do it in O(1) time, reverse the second half of the linked list, then operate as if we are comparing two lists for equality
+"""
+
+Definition of ListNode
+class ListNode(object):
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+"""
+
+class Solution:
+    """
+    @param head: A ListNode.
+    @return: A boolean.
+    """
+    def isPalindrome(self, head):
+        # write your code here
+        node_stack = []
+        if not head:
+            return True
+        fast_pointer = head
+        slow_pointer = head
+        steps = 0
+        while fast_pointer:
+            steps += 1
+            node_stack.append(fast_pointer.val)
+            fast_pointer = fast_pointer.next
+        for i in range(steps//2):
+            cur_rear = node_stack.pop()
+            if slow_pointer.val !=  cur_rear:
+                return False
+            slow_pointer = slow_pointer.next
+        return True
