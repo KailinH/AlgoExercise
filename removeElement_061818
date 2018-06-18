@@ -1,0 +1,44 @@
+"""
+Remove Element
+Given an array and a value, remove all occurrences of that value in place and return the new length.
+The order of elements can be changed, and the elements after the new length don't matter.
+Example
+Given an array [0,4,4,0,0,2,4,4], value=4
+return 4 and front four elements of the array is [0,0,0,2]
+
+Two pointer technique, in-place
+"""
+class Solution:
+    """
+    @param: A: A list of integers
+    @param: elem: An integer
+    @return: The new length after remove
+    """
+    def removeElement(self, A, elem):
+        # write your code here
+        if not A:
+            return 0
+        if len(A) == 1:
+            if A[0] == elem:
+                return 0
+            else:
+                return 1
+        front_pointer = 0
+        end_pointer = len(A) - 1
+        while front_pointer < end_pointer:
+            while A[front_pointer] != elem and front_pointer < end_pointer:
+                front_pointer += 1
+            if A[front_pointer] == elem:
+                while A[end_pointer] == elem and front_pointer < end_pointer:
+                    end_pointer -= 1
+                if A[end_pointer] != elem:
+                    A[front_pointer], A[end_pointer] = A[end_pointer], A[front_pointer]
+                    front_pointer += 1
+                    end_pointer -= 1
+           
+        if A[front_pointer]==elem:
+            print A[:front_pointer]
+            return front_pointer
+        else:
+            print A[:front_pointer+1]
+            return front_pointer + 1
