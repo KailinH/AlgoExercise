@@ -1,0 +1,44 @@
+"""
+find kth elemnt of two sorted array
+most efficient solution: O(logk), where we recurse by comparing k//2 element of both arrays, throw away
+the smaller k//2 elements, and reduce the problem to new array and new k
+"""
+def kth_element_of_two_sorted_array(arr1, arr2, k):
+    if k == 1:
+        return min(arr1[0], arr2[0])
+    print k//2
+    if arr1[k//2-1] < arr2[(k//2-1)]:
+        print arr1[k//2:], arr2, k-(k//2)
+        return kth_element_of_two_sorted_array(arr1[k//2:], arr2, k-(k//2))
+    elif arr1[k//2-1] > arr2[k//2-1]:
+        print arr1, arr2[k//2:], k-(k//2)
+        return kth_element_of_two_sorted_array(arr1, arr2[k//2:], k-(k//2))
+        
+"""
+arr1 = [2,3,6,7,9]
+arr2 = [1,4,8,10]
+k = 5
+print kth_element_of_two_sorted_array(arr1,arr2,k)
+2
+[6, 7, 9] [1, 4, 8, 10] 3
+1
+[6, 7, 9] [4, 8, 10] 2
+1
+[6, 7, 9] [8, 10] 1
+6
+"""
+
+"""
+arr1 = [100,112,256,349,770]
+arr2 = [72,86,113,119,265,445,892]
+k = 7
+print kth_element_of_two_sorted_array(arr1,arr2,k)
+3
+[100, 112, 256, 349, 770] [119, 265, 445, 892] 4
+2
+[256, 349, 770] [119, 265, 445, 892] 2
+1
+[256, 349, 770] [265, 445, 892] 1
+256
+In [ ]:
+"""
