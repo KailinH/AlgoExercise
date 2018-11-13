@@ -1,0 +1,35 @@
+#Given an N by M matrix consisting only of 1's and 0's, find the largest rectangle containing 
+#only 1's and return its area.
+#https://www.dailycodingproblem.com/solution/136?token=f8ba7e87673ff5da64432f78233cf42e13bc0b7d85a57befd13fdab9ad7823d8f4831224
+matrix = [[1, 0, 0, 0],[1, 0, 1, 1],[1, 0, 1, 1],[0, 1, 0, 0]]
+matrix = [[1, 0, 1],[0, 1, 1],[1, 1, 0]]
+def find_rectangle_area(arr):
+    # given an array denoting the height of the histogram
+    # find the rectangle with the largest area
+    biggest_area = 0
+    for i in range(len(arr)-1):
+        for j in range(i+1, len(arr)):
+            height = min([arr[k] for k in range(i, j+1)])
+            width = j - i + 1
+            area = height*width
+            #print(area, height, width)
+            if area >= biggest_area:
+                biggest_area = area
+    return biggest_area
+print find_rectangle_area([3,0,2,2])
+def find_largest_rectangle(matrix):
+    m = len(matrix)
+    n = len(matrix[0])
+    cache = matrix[0]
+    biggest_so_far = find_rectangle_area(cache)
+    for i in range(1, m):
+        for j in range(n):
+            if matrix[i][j] == 0:
+                cache[j] = 0
+            else:
+                cache[j] += 1
+        cur_area = find_rectangle_area(cache)
+        #print(cache, cur_area)
+        biggest_so_far = max(biggest_so_far, cur_area)
+    return biggest_so_far
+find_largest_rectangle(matrix)
