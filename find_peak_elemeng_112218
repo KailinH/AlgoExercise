@@ -1,0 +1,17 @@
+# find a peak element: 
+# https://www.lintcode.com/problem/find-peak-element/description
+# O(logn) time, O(1) space, binary search base divide and conquer
+
+def find_peak_element(l, r, arr):
+    # no adjacent elements have the same value
+    # len(arr) >= 3
+    m = l+(r-l)//2
+    if (arr[m] >= arr[m-1]) and (arr[m] >= arr[m+1]):
+        return m
+    else:
+        # search in the left, this case, if we have a peak element in the left
+        # we always return it first
+        return find_peak_element(l, m, arr)
+        # search in the righ, this won't be run if the previous recursion returns
+        return find_peak_element(m+1, r, arr)
+find_peak_element(0, 8, [1, 2, 1, 3, 4, 5, 7, 6])
