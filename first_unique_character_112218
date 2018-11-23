@@ -1,0 +1,21 @@
+#https://www.lintcode.com/problem/first-unique-character-in-a-string/description
+def firstUniqCharII(s):
+    if len(s) <= 1:
+        return s
+    count = {}
+    order = 0
+    for i in range(len(s)):
+        if s[i] not in count:
+            count[s[i]] = {}
+            count[s[i]]['ord'] = order
+            order += 1
+            count[s[i]]['cnt'] = 1
+        else:
+            count[s[i]]['cnt'] += 1
+    # initialize smallest order letter with an arbitrary big number
+    smallest_ord = 1000
+    for k in count.keys():
+        if count[k]['cnt']==1 and count[k]['ord'] <= smallest_ord:
+            smallest_ord = count[k]['ord']
+            ans = k
+    return ans
