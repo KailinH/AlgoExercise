@@ -3,6 +3,12 @@ Source:https://www.interviewcake.com/question/python/linked-list-cycles
 Check whether a linked list contains a cycle
 """
 
+class LinkedListNode(object):
+
+    def __init__(self, value):
+        self.value = value
+        self.next  = None
+        
 ### O(n) time and O(n) space solution ###
 def contains_cycle1(root):
     cycle = False
