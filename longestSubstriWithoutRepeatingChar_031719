@@ -1,0 +1,32 @@
+#O(n^2) solution
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        print(s)
+        if len(s) <= 1:
+            return len(s)
+        lp = 0
+        rp = 1
+        cur_max = 1
+        cur_unique = [s[lp]]
+        while rp < len(s):
+            if s[rp] not in cur_unique:
+                cur_unique.append(s[rp])
+                rp += 1
+            else:
+                cur_len = rp - lp 
+                lp += 1
+                rp = lp + 1
+                cur_unique = [s[lp]]
+                if cur_len >= cur_max:
+                    cur_max = cur_len
+        # take care of the case when the whole string has no repeating characters
+        cur_max = max(cur_max, len(s[lp:rp]))        
+        return cur_max
+s = "abcabcbb"
+s = 'au'
+res = Solution().lengthOfLongestSubstring(s)
+print(res)
